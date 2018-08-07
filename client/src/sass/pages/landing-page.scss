@@ -1,0 +1,43 @@
+.landing-page{
+    display: flex;
+    flex-direction: column;
+
+    &__header{
+        background-image: linear-gradient(
+            to right bottom,
+            #a85b03cc, #ff8902c9),
+            url("../images/landing.jpg");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: left top;
+        min-height: 85vh;
+        text-align: center;
+        color: white;
+        text-shadow: 2px 2px 8px rgb(51, 51, 51);
+
+        &-text{
+            width: 50%;
+            position: absolute;
+            left: 25%;
+            top: 15%;
+            font-size: 125%;
+        }
+
+        &-scroll{
+            font-size: 300%;
+            animation: scrollButton 5s infinite;
+
+            &:hover{
+                cursor: pointer;
+                color: orange;
+            }
+        }
+    }
+
+}
+
+@keyframes scrollButton {
+    0%   {transform: translateY(0px);}
+    50%  {transform: translateY(10px);}
+    100% {transform: translateY(0px);}
+}

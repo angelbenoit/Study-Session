@@ -1,0 +1,42 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", Helvetica, sans-serif; }
+
+.login {
+  background-color: grey; }
+  .login__background {
+    background-color: green; }
+
+.landing-page {
+  display: flex;
+  flex-direction: column; }
+  .landing-page__header {
+    background-image: linear-gradient(to right bottom, #a85b03cc, #ff8902c9), url("../images/landing.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
+    min-height: 85vh;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 8px #333333; }
+    .landing-page__header-text {
+      width: 50%;
+      position: absolute;
+      left: 25%;
+      top: 15%;
+      font-size: 125%; }
+    .landing-page__header-scroll {
+      font-size: 300%;
+      animation: scrollButton 5s infinite; }
+      .landing-page__header-scroll:hover {
+        cursor: pointer;
+        color: orange; }
+
+@keyframes scrollButton {
+  0% {
+    transform: translateY(0px); }
+  50% {
+    transform: translateY(10px); }
+  100% {
+    transform: translateY(0px); } }
