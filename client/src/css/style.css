@@ -10,28 +10,45 @@ html, body {
 
 .landing-page {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  color: white; }
   .landing-page__header {
-    background-image: linear-gradient(to right bottom, #a85b03cc, #ff8902c9), url("../images/landing.jpg");
+    background-image: linear-gradient(to right bottom, #693902e7, #ff8902ce), url("../images/landing.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: left top;
     min-height: 85vh;
     text-align: center;
-    color: white;
     text-shadow: 2px 2px 8px #333333; }
     .landing-page__header-text {
       width: 50%;
       position: absolute;
       left: 25%;
-      top: 15%;
+      top: 25%;
       font-size: 125%; }
     .landing-page__header-scroll {
       font-size: 300%;
-      animation: scrollButton 5s infinite; }
+      animation: scrollButton 2s infinite;
+      transition: color .6s ease-in; }
       .landing-page__header-scroll:hover {
         cursor: pointer;
         color: orange; }
+  .landing-page__details {
+    background-image: linear-gradient(to bottom left, #ce6f02c2, orange);
+    min-height: 100vh; }
+    .landing-page__details-footerIntro {
+      text-align: center;
+      width: 50%;
+      position: relative;
+      left: 25%;
+      padding-top: 5%;
+      text-shadow: 2px 2px 6px #313131; }
+    .landing-page__details .feature_list {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; }
+      .landing-page__details .feature_list-item {
+        border: 1px solid black; }
 
 @keyframes scrollButton {
   0% {
