@@ -13,7 +13,7 @@ html, body {
   flex-direction: column;
   color: white; }
   .landing-page__header {
-    background-image: linear-gradient(to right bottom, rgba(108, 112, 253, 0.8), rgba(171, 174, 247, 0.8)), url("../images/landing.jpg");
+    background-image: linear-gradient(to right bottom, rgba(108, 112, 253, 0.85), rgba(165, 165, 240, 0.9)), url("../images/landing.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: left top;
@@ -26,9 +26,23 @@ html, body {
       left: 25%;
       top: 25%;
       font-size: 125%;
-      text-align: center;
       display: flex;
       flex-direction: column; }
+    .landing-page__header .redirectHomePage {
+      border-radius: 1.5rem;
+      box-shadow: 10px 10px 5px -7px #ABAEF7;
+      margin-bottom: 3rem;
+      margin-left: 35%;
+      width: 25%;
+      color: #6c70fd;
+      text-decoration: none;
+      text-shadow: 0 0 1px;
+      background-color: white;
+      padding: 1rem;
+      transition: all .5s ease-in; }
+      .landing-page__header .redirectHomePage:hover {
+        background-color: #ABAEF7;
+        color: white; }
     .landing-page__header-scroll {
       font-size: 300%;
       animation: scrollButton 2s infinite;
@@ -37,15 +51,14 @@ html, body {
         cursor: pointer;
         color: #ABAEF7; }
   .landing-page__details {
-    background-image: linear-gradient(to top, #abaef7, #6c70fd);
-    min-height: 100vh; }
+    min-height: 100vh;
+    color: #6c70fd; }
     .landing-page__details-footerIntro {
       text-align: center;
       width: 80%;
       position: relative;
       left: 10%;
-      padding-top: 5%;
-      text-shadow: 2px 2px 6px #313131; }
+      padding-top: 5%; }
     .landing-page__details .feature_list {
       display: flex;
       flex-direction: column;
@@ -53,17 +66,27 @@ html, body {
       font-size: 90%; }
       .landing-page__details .feature_list-item {
         padding: 1rem;
-        border: 1px solid black;
         display: flex;
         height: 30vh;
         margin-bottom: 2rem; }
         .landing-page__details .feature_list-item-text {
           width: 50%;
-          padding: 1.5rem; }
+          padding: 1.5rem;
+          align-self: center; }
         .landing-page__details .feature_list-item img {
           height: 100%;
           width: 50%;
           border-radius: 10px; }
+  .landing-page__footer {
+    background-image: linear-gradient(to right bottom, #6c70fd, #a5a5f0);
+    height: 15vh;
+    display: flex;
+    justify-content: space-around; }
+    .landing-page__footer-item {
+      color: white;
+      text-decoration: none;
+      align-self: center;
+      font-size: 1.25rem; }
 
 @keyframes scrollButton {
   0% {

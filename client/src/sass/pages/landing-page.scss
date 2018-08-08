@@ -7,7 +7,7 @@
     &__header{
         background-image: linear-gradient(
             to right bottom,
-            rgba(108, 112, 253, 0.8), rgba(171, 174, 247, 0.8)),
+            rgba(108, 112, 253, 0.85), rgba(165, 165, 240, 0.9)),
             url("../images/landing.jpg");
         background-size: 100% 100%;
         background-repeat: no-repeat;
@@ -26,6 +26,25 @@
             flex-direction: column;
         }
 
+        .redirectHomePage{
+            border-radius: 1.5rem;
+            box-shadow:  10px 10px 5px -7px #ABAEF7;
+            margin-bottom: 3rem;
+            margin-left: 35%;
+            width: 25%;
+            color: rgb(108, 112, 253);
+            text-decoration: none;
+            text-shadow: 0 0 1px;
+            background-color: white;
+            padding: 1rem;
+            transition: all .5s ease-in;
+
+            &:hover{
+                background-color: #ABAEF7;
+                color: white;
+            }
+        }
+
         &-scroll{
             font-size: 300%;
             animation: scrollButton 2s infinite;
@@ -40,10 +59,8 @@
 
 
     &__details{
-        background-image: linear-gradient(
-                            to top,
-                            rgb(171, 174, 247), rgb(108, 112, 253));
         min-height: 100vh;
+        color: rgb(108, 112, 253);
 
         &-footerIntro{
             text-align: center;
@@ -51,7 +68,6 @@
             position: relative;
             left: 10%;
             padding-top: 5%;
-            text-shadow: 2px 2px 6px rgb(49, 49, 49);
         }
 
         .feature_list{
@@ -62,7 +78,7 @@
 
             &-item{
                 padding: 1rem;
-                border: 1px solid black;
+                //border: 1px solid black;
                 display: flex;
                 height: 30vh;
                 margin-bottom: 2rem;
@@ -70,6 +86,7 @@
                 &-text{
                     width: 50%;
                     padding: 1.5rem;
+                    align-self: center;
                 }
                 img{
                     height: 100%;
@@ -77,6 +94,22 @@
                     border-radius: 10px;
                 }
             }
+        }
+    }
+
+    &__footer{
+        background-image: linear-gradient(
+            to right bottom,
+            rgb(108, 112, 253), rgb(165, 165, 240));
+        height: 15vh;
+        display: flex;
+        justify-content: space-around;
+
+        &-item{
+            color: white;
+            text-decoration: none;
+            align-self: center;
+            font-size: 1.25rem;
         }
     }
 

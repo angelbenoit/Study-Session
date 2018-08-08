@@ -30,12 +30,14 @@ class LandingPage extends Component {
     getLoginOption(){
         if(!this.props.auth){
             return(
-                <a href="/auth/google">Login</a>
+                <a className="redirectHomePage" href="/auth/google">
+                    <i class="fa fa-google-plus"></i> &nbsp;Login
+                </a>
             )
         }
         else{
             return(
-                <NavLink to="/">
+                <NavLink className="redirectHomePage" to="/">
                     Go to dashboard
                 </NavLink>
             )
@@ -48,7 +50,7 @@ class LandingPage extends Component {
             <div className="landing-page">
                 <div className="landing-page__header">
                     <div className="landing-page__header-text">
-                        <h1>Study Session</h1>
+                        <h1><i class="fa fa-book"></i> Study Session</h1>
                         <p>
                             Lorem ipsum,
                             dolor sit amet consectetur
@@ -61,9 +63,7 @@ class LandingPage extends Component {
                             labore esse corporis!
                         </p>
 
-                        <div style={{"paddingBottom": '2rem'}}>
-                            {this.getLoginOption()}
-                        </div>
+                        {this.getLoginOption()}
 
                         <i
                             class="fa fa-arrow-circle-down landing-page__header-scroll"
@@ -75,7 +75,7 @@ class LandingPage extends Component {
 
                 <div className="landing-page__details">
                     <div className="landing-page__details-footerIntro">
-                        <h1>Features</h1>
+                        <h1 style={{'textDecoration': 'underline'}}>Features</h1>
                         <div className="feature_list">
 
                             <div className="feature_list-item">
@@ -88,6 +88,8 @@ class LandingPage extends Component {
                                 </div>
                                 <img src={require("../images/calendar.png")} alt="test"/>
                             </div>
+
+                            <div style={{"border-bottom": "2px solid #ABAEF7"}}></div>
 
                             <div className="feature_list-item">
                                 <div className="feature_list-item-text">
@@ -106,6 +108,8 @@ class LandingPage extends Component {
                                 <img src={require("../images/landing.jpg")} alt="test"/>
                             </div>
 
+                            <div style={{"border-bottom": "2px solid #ABAEF7"}}></div>
+
                             <div className="feature_list-item">
                                 <div className="feature_list-item-text">
                                     <h4>User Dashboard</h4>
@@ -119,6 +123,13 @@ class LandingPage extends Component {
 
                         </div>
                     </div>
+                </div>
+
+                <div className="landing-page__footer">
+                    <h3 className="landing-page__footer-item">Study Session</h3>
+                    <a className="landing-page__footer-item" href="https://github.com/angelbenoit/Study-Sesssion">
+                        <i class="fa fa-github"></i> View Project Source
+                    </a>
                 </div>
             </div>
         );
