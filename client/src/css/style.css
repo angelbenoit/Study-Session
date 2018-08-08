@@ -25,7 +25,10 @@ html, body {
       position: absolute;
       left: 25%;
       top: 25%;
-      font-size: 125%; }
+      font-size: 125%;
+      text-align: center;
+      display: flex;
+      flex-direction: column; }
     .landing-page__header-scroll {
       font-size: 300%;
       animation: scrollButton 2s infinite;

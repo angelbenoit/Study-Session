@@ -22,6 +22,8 @@
             left: 25%;
             top: 25%;
             font-size: 125%;
+            display: flex;
+            flex-direction: column;
         }
 
         &-scroll{

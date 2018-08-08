@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
-import { Events, animateScroll as scroll, scrollSpy } from 'react-scroll'
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { Events, animateScroll as scroll, scrollSpy } from 'react-scroll';
+import * as actions from '../Actions';
 
 class LandingPage extends Component {
+
+    componentWillMount(){
+        this.props.fetchUser();
+    }
 
     //these two component functions will initialize the scrolling package
     componentDidMount() {
@@ -20,6 +27,21 @@ class LandingPage extends Component {
         Events.scrollEvent.remove('end');
     }
 
+    getLoginOption(){
+        if(!this.props.auth){
+            return(
+                <a href="/auth/google">Login</a>
+            )
+        }
+        else{
+            return(
+                <NavLink to="/">
+                    Go to dashboard
+                </NavLink>
+            )
+        }
+        //console.log(this.props.auth)
+    }
 
     render() {
         return (
@@ -38,6 +60,10 @@ class LandingPage extends Component {
                             eos possimus nulla repellendus
                             labore esse corporis!
                         </p>
+
+                        <div style={{"paddingBottom": '2rem'}}>
+                            {this.getLoginOption()}
+                        </div>
 
                         <i
                             class="fa fa-arrow-circle-down landing-page__header-scroll"
@@ -99,4 +125,8 @@ class LandingPage extends Component {
     }
 }
 
-export default LandingPage;
+function mapStateToProps(state){
+    return { auth: state.auth }
+}
+
+export default connect(mapStateToProps, actions)(LandingPage);
