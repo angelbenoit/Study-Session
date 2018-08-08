@@ -7,7 +7,7 @@
     &__header{
         background-image: linear-gradient(
             to right bottom,
-            #693902e7, #ff8902ce),
+            rgba(108, 112, 253, 0.8), rgba(171, 174, 247, 0.8)),
             url("../images/landing.jpg");
         background-size: 100% 100%;
         background-repeat: no-repeat;
@@ -31,21 +31,23 @@
 
             &:hover{
                 cursor: pointer;
-                color: orange;
+                color: #ABAEF7;
             }
         }
     }
 
 
     &__details{
-        background-image: linear-gradient(to bottom left, #ce6f02c2, orange);
+        background-image: linear-gradient(
+                            to top,
+                            rgb(171, 174, 247), rgb(108, 112, 253));
         min-height: 100vh;
 
         &-footerIntro{
             text-align: center;
-            width: 50%;
+            width: 80%;
             position: relative;
-            left: 25%;
+            left: 10%;
             padding-top: 5%;
             text-shadow: 2px 2px 6px rgb(49, 49, 49);
         }
@@ -54,9 +56,24 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            font-size: 90%;
 
             &-item{
+                padding: 1rem;
                 border: 1px solid black;
+                display: flex;
+                height: 30vh;
+                margin-bottom: 2rem;
+
+                &-text{
+                    width: 50%;
+                    padding: 1.5rem;
+                }
+                img{
+                    height: 100%;
+                    width: 50%;;
+                    border-radius: 10px;
+                }
             }
         }
     }

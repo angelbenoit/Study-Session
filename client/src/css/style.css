@@ -13,7 +13,7 @@ html, body {
   flex-direction: column;
   color: white; }
   .landing-page__header {
-    background-image: linear-gradient(to right bottom, #693902e7, #ff8902ce), url("../images/landing.jpg");
+    background-image: linear-gradient(to right bottom, rgba(108, 112, 253, 0.8), rgba(171, 174, 247, 0.8)), url("../images/landing.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: left top;
@@ -32,23 +32,35 @@ html, body {
       transition: color .6s ease-in; }
       .landing-page__header-scroll:hover {
         cursor: pointer;
-        color: orange; }
+        color: #ABAEF7; }
   .landing-page__details {
-    background-image: linear-gradient(to bottom left, #ce6f02c2, orange);
+    background-image: linear-gradient(to top, #abaef7, #6c70fd);
     min-height: 100vh; }
     .landing-page__details-footerIntro {
       text-align: center;
-      width: 50%;
+      width: 80%;
       position: relative;
-      left: 25%;
+      left: 10%;
       padding-top: 5%;
       text-shadow: 2px 2px 6px #313131; }
     .landing-page__details .feature_list {
       display: flex;
       flex-direction: column;
-      justify-content: space-between; }
+      justify-content: space-between;
+      font-size: 90%; }
       .landing-page__details .feature_list-item {
-        border: 1px solid black; }
+        padding: 1rem;
+        border: 1px solid black;
+        display: flex;
+        height: 30vh;
+        margin-bottom: 2rem; }
+        .landing-page__details .feature_list-item-text {
+          width: 50%;
+          padding: 1.5rem; }
+        .landing-page__details .feature_list-item img {
+          height: 100%;
+          width: 50%;
+          border-radius: 10px; }
 
 @keyframes scrollButton {
   0% {
