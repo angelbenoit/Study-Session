@@ -3,6 +3,100 @@ html, body {
   padding: 0;
   font-family: "Trebuchet MS", Helvetica, sans-serif; }
 
+.arrows {
+  padding: 1rem 1.5rem;
+  cursor: pointer; }
+  @media only screen and (max-width: 600px) {
+    .arrows {
+      padding: .5rem 1rem; } }
+  .arrows:hover {
+    color: #797dee; }
+
+.calendar {
+  text-align: center;
+  color: white;
+  background-color: white;
+  border: 1px solid #ABAEF7;
+  font-family: Arial, Helvetica, sans-serif;
+  user-select: none; }
+  .calendar_header {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: #ABAEF7; }
+    @media only screen and (max-width: 600px) {
+      .calendar_header {
+        font-size: 1rem; } }
+
+.week-blank {
+  height: 6rem;
+  border: 1px solid #ABAEF7;
+  width: 6rem; }
+  @media only screen and (max-width: 600px) {
+    .week-blank {
+      height: 3rem;
+      width: 3rem; } }
+
+.week-name {
+  height: 6rem;
+  width: 6rem; }
+  .week-name__row {
+    background-color: #ABAEF7;
+    font-size: 1.5rem; }
+    @media only screen and (max-width: 600px) {
+      .week-name__row {
+        font-size: 1rem;
+        height: 3rem;
+        width: 3rem; } }
+
+.week-day {
+  height: 6rem;
+  border: 1px solid #ABAEF7;
+  width: 6rem;
+  color: #8487f0;
+  transition: transform .3s, background-color .5s; }
+  @media only screen and (max-width: 600px) {
+    .week-day {
+      height: 3rem;
+      width: 3rem; } }
+  .week-day:active {
+    transform: scale(1.5);
+    border: 2.5px solid #c3c4ff; }
+  .week-day:hover {
+    background-color: #ABAEF7;
+    color: white;
+    cursor: pointer; }
+
+.day-header {
+  display: flex;
+  font-weight: bold;
+  background-color: #ABAEF7;
+  color: white;
+  min-height: 20vh; }
+  .day-header-back {
+    margin: auto;
+    font-size: 1.5rem; }
+    @media only screen and (max-width: 800px) {
+      .day-header-back {
+        font-size: 1rem; } }
+    .day-header-back:hover {
+      color: #9195ff;
+      cursor: pointer; }
+  .day-header-date {
+    display: flex;
+    margin: auto;
+    font-size: 3rem; }
+    @media only screen and (max-width: 800px) {
+      .day-header-date {
+        font-size: 2rem;
+        padding-right: 2rem; } }
+    @media only screen and (max-width: 400px) {
+      .day-header-date {
+        font-size: 1.25rem;
+        padding-right: 2.5rem; } }
+  .day-header__item {
+    margin-left: 2rem; }
+
 .login {
   background-color: grey; }
   .login__background {

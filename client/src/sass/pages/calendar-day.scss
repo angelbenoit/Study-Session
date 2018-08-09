@@ -1,0 +1,39 @@
+.day-header{
+    display: flex;
+    font-weight: bold;
+    background-color: #ABAEF7;
+    color: white;
+    min-height: 20vh;
+
+    &-back{
+        margin: auto;
+        font-size: 1.5rem;
+        @media only screen and (max-width: 800px) {
+            font-size: 1rem;
+        }
+
+        &:hover{
+            color: rgb(145, 149, 255);
+            cursor: pointer;
+        }
+    }
+
+    &-date{
+        display: flex;
+        margin: auto;
+        font-size: 3rem;
+        @media only screen and (max-width: 800px) {
+            font-size: 2rem;
+            padding-right: 2rem;
+        }
+        @media only screen and (max-width: 400px) {
+            font-size: 1.25rem;
+            padding-right: 2.5rem;
+        }
+
+    }
+
+    &__item{
+        margin-left: 2rem;
+    }
+}

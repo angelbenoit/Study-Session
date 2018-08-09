@@ -1,0 +1,91 @@
+$height: 6rem;
+$width: 6rem;
+
+$height-small: 3rem;
+$width-small: 3rem;
+
+$box-border: 1px solid #ABAEF7;
+
+.arrows{
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+
+    @media only screen and (max-width: 600px) {
+        padding: .5rem 1rem;
+    }
+
+    &:hover{
+        color: rgb(121, 125, 238);
+    }
+}
+
+.calendar{
+    text-align: center;
+    color: white;
+    background-color: white;
+    border: $box-border;
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+
+    &_header{
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        background-color: #ABAEF7;
+
+        @media only screen and (max-width: 600px) {
+            font-size: 1rem;
+        }
+    }
+}
+
+.week-blank{
+    height: $height;
+    border: $box-border;
+    width: $width;
+
+    @media only screen and (max-width: 600px) {
+        height: $height-small;
+        width: $width-small;
+    }
+}
+
+.week-name{
+    height: $height;
+    width: $width;
+
+    &__row{
+        background-color: #ABAEF7;
+        font-size: 1.5rem;
+
+        @media only screen and (max-width: 600px) {
+            font-size: 1rem;
+            height: $height-small;
+            width: $width-small;
+        }
+    }
+}
+
+.week-day{
+    height: $height;
+    border: $box-border;
+    width: $width;
+    color: rgb(132, 135, 240);
+    transition: transform .3s, background-color .5s;
+
+    @media only screen and (max-width: 600px) {
+        height: $height-small;
+        width: $width-small;
+    }
+
+    &:active{
+        transform: scale(1.5);
+        border: 2.5px solid rgb(195, 196, 255);
+    }
+
+    &:hover{
+        background-color: #ABAEF7;
+        color: white;
+        cursor: pointer;
+    }
+}
