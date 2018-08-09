@@ -76,6 +76,8 @@ class LandingPage extends Component {
                 <div className="landing-page__details">
                     <div className="landing-page__details-footerIntro">
                         <h1 style={{'textDecoration': 'underline'}}>Features</h1>
+                        <div style={{"border-bottom": "2px solid #ABAEF7"}}></div>
+
                         <div className="feature_list">
 
                             <div className="feature_list-item">
