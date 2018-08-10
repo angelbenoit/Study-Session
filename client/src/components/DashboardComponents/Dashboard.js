@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import Overview from './DashboardOverview';
+import Upcoming from './DashboardUpcoming';
+import Past from './DashboardPast';
+import Goals from './DashboardGoals';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -11,12 +15,13 @@ class Dashboard extends Component {
             goals: false
         }
         this.changeSelection = this.changeSelection.bind(this);
+        this.displaySelected = this.displaySelected.bind(this);
         this.getSelected = this.getSelected.bind(this);
     }
 
     getSelected(selection) {
         if (this.state[selection])
-            return { 'backgroundColor': 'rgba(220,220,220,.4)' }
+            return { 'backgroundColor': 'rgb(197, 199, 255)' }
     }
 
     changeSelection(selection) {
@@ -34,6 +39,17 @@ class Dashboard extends Component {
                 this.setState({ overview: false, upcoming: false, past: false, goals: true });
                 break;
         }
+    }
+
+    displaySelected(){
+        if(this.state.overview)
+            return <Overview />;
+        else if(this.state.upcoming)
+            return <Upcoming />;
+        else if(this.state.past)
+            return <Past />;
+        else
+            return <Goals />;
     }
 
     render() {
@@ -70,7 +86,7 @@ class Dashboard extends Component {
                     </a>
                 </div>
                 <div className="dashboard__data">
-                    DATA TO BE SHOWN BASED ON USER
+                    {this.displaySelected()}
                 </div>
             </div>
         );
