@@ -97,6 +97,39 @@ html, body {
   .day-header__item {
     margin-left: 2rem; }
 
+.dashboard {
+  display: flex;
+  min-height: 100vh; }
+  @media only screen and (max-width: 500px) {
+    .dashboard {
+      flex-direction: column; } }
+  .dashboard__sideNav {
+    color: white;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(to left top, #c5c7ff, #ABAEF7, #8d91f8);
+    width: 25%; }
+    @media only screen and (max-width: 500px) {
+      .dashboard__sideNav {
+        font-size: 75%;
+        flex-direction: row;
+        width: 100%; } }
+    @media only screen and (max-width: 400px) {
+      .dashboard__sideNav {
+        flex-direction: column; } }
+    .dashboard__sideNav-item {
+      padding: 2rem;
+      border-bottom: 1px solid #c5c7ff; }
+      @media only screen and (max-width: 500px) {
+        .dashboard__sideNav-item {
+          padding: 1.5rem; } }
+      .dashboard__sideNav-item:hover {
+        background-color: #c5c7ff;
+        cursor: pointer; }
+  .dashboard__data {
+    width: 75%; }
+
 .login {
   background-color: grey; }
   .login__background {

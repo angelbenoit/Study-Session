@@ -4,7 +4,12 @@ html, body{
     font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
+$primary-color: #ABAEF7;
+$primary-color-dark: rgb(141, 145, 248);
+$secondary-color: rgb(197, 199, 255);
+
 @import "pages/calendar";
 @import "pages/calendar-day";
+@import "pages/dashboard-main";
 @import "pages/page-layout";
 @import "pages/landing-page";

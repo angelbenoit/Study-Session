@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LandingPage from './components/LandingPage';
+import Dashboard from './components/DashboardComponents/Dashboard';
 import Calendar from './components/Calendar';
 import CalendarDay from './components/CalendarDay';
 import {BrowserRouter,Route} from 'react-router-dom';
@@ -20,6 +21,7 @@ class App extends Component {
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/calendar' component={Calendar} />
             <Route exact path="/:month/:day/:year" component={CalendarDay} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </div>
         </BrowserRouter>
       </div>

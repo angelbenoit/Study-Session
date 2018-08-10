@@ -1,0 +1,47 @@
+.dashboard{
+    display: flex;
+    min-height: 100vh;
+    @media only screen and (max-width: 500px) {
+        flex-direction: column;
+    }
+
+    &__sideNav{
+        color: white;
+        font-weight: bold;
+
+        display: flex;
+        flex-direction: column;
+        background-image: linear-gradient(
+                            to left top,
+                            $secondary-color, $primary-color, $primary-color-dark);
+
+        width: 25%;
+
+        @media only screen and (max-width: 500px) {
+            font-size: 75%;
+            flex-direction: row;
+            width: 100%;
+        }
+        @media only screen and (max-width: 400px) {
+            flex-direction: column;
+        }
+
+        &-item{
+            padding: 2rem;
+            border-bottom: 1px solid $secondary-color;
+
+            @media only screen and (max-width: 500px) {
+                padding: 1.5rem;
+            }
+
+            &:hover{
+                background-color: $secondary-color;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__data{
+        width: 75%;
+    }
+}

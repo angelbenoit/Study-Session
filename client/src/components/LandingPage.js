@@ -37,7 +37,7 @@ class LandingPage extends Component {
         }
         else{
             return(
-                <NavLink className="redirectHomePage" to="/">
+                <NavLink className="redirectHomePage" to="/dashboard">
                     Go to dashboard
                 </NavLink>
             )
