@@ -37,3 +37,36 @@
         margin-left: 2rem;
     }
 }
+
+.formInput label{
+    color: $primary-color-dark;
+}
+
+.formInput input{
+    border: none;
+    background: none;
+    color: $primary-color;
+    border-bottom: 1px solid $primary-color-dark;
+    margin-top: 1rem;
+
+    &:focus{
+        outline-width: 0;
+    }
+}
+
+.formInput{
+    margin-top: 1rem;
+}
+
+.formSubmit{
+    border: none;
+    border-radius: 5px;
+    background-color: $primary-color;
+    padding: .7rem;
+    color: white;
+    margin-top: 1rem;
+}
+
+.sessionForm{
+    padding: 5rem;
+}

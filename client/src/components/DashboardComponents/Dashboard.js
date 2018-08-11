@@ -3,6 +3,8 @@ import Overview from './DashboardOverview';
 import Upcoming from './DashboardUpcoming';
 import Past from './DashboardPast';
 import Goals from './DashboardGoals';
+import SideNav from '../SideNav';
+import Timer from '../Timer';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -12,7 +14,8 @@ class Dashboard extends Component {
             overview: true,
             upcoming: false,
             past: false,
-            goals: false
+            goals: false,
+            timer: false
         }
         this.changeSelection = this.changeSelection.bind(this);
         this.displaySelected = this.displaySelected.bind(this);
@@ -27,64 +30,43 @@ class Dashboard extends Component {
     changeSelection(selection) {
         switch (selection) {
             case "overview":
-                this.setState({ overview: true, upcoming: false, past: false, goals: false });
+                this.setState({ overview: true, upcoming: false, past: false, goals: false, timer: false });
                 break;
             case "upcoming":
-                this.setState({ overview: false, upcoming: true, past: false, goals: false });
+                this.setState({ overview: false, upcoming: true, past: false, goals: false, timer: false });
                 break;
             case "past":
-                this.setState({ overview: false, upcoming: false, past: true, goals: false });
+                this.setState({ overview: false, upcoming: false, past: true, goals: false, timer: false });
                 break;
             case "goals":
-                this.setState({ overview: false, upcoming: false, past: false, goals: true });
+                this.setState({ overview: false, upcoming: false, past: false, goals: true, timer: false });
+                break;
+            case "timer":
+                this.setState({ overview: false, upcoming: false, past: false, goals: false, timer: true });
                 break;
         }
     }
 
-    displaySelected(){
-        if(this.state.overview)
+    displaySelected() {
+        if (this.state.overview)
             return <Overview />;
-        else if(this.state.upcoming)
+        else if (this.state.upcoming)
             return <Upcoming />;
-        else if(this.state.past)
+        else if (this.state.past)
             return <Past />;
-        else
+        else if(this.state.goals)
             return <Goals />;
+        else
+            return <Timer />;
     }
 
     render() {
         return (
             <div className="dashboard">
-                <div className="dashboard__sideNav">
-                    <a
-                        className="dashboard__sideNav-item"
-                        style={this.getSelected("overview")}
-                        onClick={() => this.changeSelection("overview")}
-                    >
-                        Overview
-                    </a>
-                    <a
-                        className="dashboard__sideNav-item"
-                        style={this.getSelected("upcoming")}
-                        onClick={() => this.changeSelection("upcoming")}
-                    >
-                        Upcoming Sessions
-                    </a>
-                    <a
-                        className="dashboard__sideNav-item"
-                        style={this.getSelected("past")}
-                        onClick={() => this.changeSelection("past")}
-                    >
-                        Past Sessions
-                    </a>
-                    <a
-                        className="dashboard__sideNav-item"
-                        style={this.getSelected("goals")}
-                        onClick={() => this.changeSelection("goals")}
-                    >
-                        Set Goals
-                    </a>
-                </div>
+                <SideNav
+                    getSelected={this.getSelected}
+                    changeSelection={this.changeSelection}
+                />
                 <div className="dashboard__data">
                     {this.displaySelected()}
                 </div>

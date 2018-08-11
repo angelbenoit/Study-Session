@@ -19,10 +19,7 @@
 
         @media only screen and (max-width: 500px) {
             font-size: 75%;
-            flex-direction: row;
             width: 100%;
-        }
-        @media only screen and (max-width: 400px) {
             flex-direction: column;
         }
 

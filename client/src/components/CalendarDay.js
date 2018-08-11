@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CalendarDayForm from './CalendarDayForm';
 import { getMonthName, daysInMonth } from '../getDates';
 import { withRouter } from 'react-router-dom';
 
@@ -10,7 +11,7 @@ class SpecifiedDay extends Component {
             this.props.history.push("/");
     }
 
-    redirectToCalendar(){
+    redirectToCalendar() {
         this.props.history.push("/calendar");
     }
 
@@ -45,6 +46,10 @@ class SpecifiedDay extends Component {
         return false;
     }
 
+    submitForm(value){
+        alert(value)
+    }
+
     render() {
         return (
             <div>
@@ -58,7 +63,9 @@ class SpecifiedDay extends Component {
                         <p className="day-header__item">{this.props.match.params.year}</p>
                     </div>
                 </div>
-
+                <div>
+                    <CalendarDayForm submitForm={this.submitForm}/>
+                </div>
             </div>
         );
     }

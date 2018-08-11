@@ -97,6 +97,32 @@ html, body {
   .day-header__item {
     margin-left: 2rem; }
 
+.formInput label {
+  color: #8d91f8; }
+
+.formInput input {
+  border: none;
+  background: none;
+  color: #ABAEF7;
+  border-bottom: 1px solid #8d91f8;
+  margin-top: 1rem; }
+  .formInput input:focus {
+    outline-width: 0; }
+
+.formInput {
+  margin-top: 1rem; }
+
+.formSubmit {
+  border: none;
+  border-radius: 5px;
+  background-color: #ABAEF7;
+  padding: .7rem;
+  color: white;
+  margin-top: 1rem; }
+
+.sessionForm {
+  padding: 5rem; }
+
 .dashboard {
   display: flex;
   min-height: 100vh; }
@@ -113,10 +139,7 @@ html, body {
     @media only screen and (max-width: 500px) {
       .dashboard__sideNav {
         font-size: 75%;
-        flex-direction: row;
-        width: 100%; } }
-    @media only screen and (max-width: 400px) {
-      .dashboard__sideNav {
+        width: 100%;
         flex-direction: column; } }
     .dashboard__sideNav-item {
       padding: 2rem;
