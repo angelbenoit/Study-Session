@@ -97,31 +97,43 @@ html, body {
   .day-header__item {
     margin-left: 2rem; }
 
-.formInput label {
-  color: #8d91f8; }
+.formLabel {
+  color: #8d91f8;
+  margin-top: 1rem; }
 
-.formInput input {
+.formInput {
   border: none;
   background: none;
   color: #ABAEF7;
   border-bottom: 1px solid #8d91f8;
   margin-top: 1rem; }
-  .formInput input:focus {
+  .formInput:focus {
     outline-width: 0; }
 
-.formInput {
-  margin-top: 1rem; }
+.buttonSubmitGroup {
+  display: flex; }
 
 .formSubmit {
   border: none;
-  border-radius: 5px;
   background-color: #ABAEF7;
   padding: .7rem;
   color: white;
-  margin-top: 1rem; }
+  margin-top: 1rem;
+  transition: all .3s ease-in; }
+  .formSubmit:hover {
+    background-color: #8d91f8;
+    cursor: pointer; }
+
+.formError {
+  color: red; }
+
+.sessionItems {
+  display: flex;
+  flex-direction: column; }
 
 .sessionForm {
-  padding: 5rem; }
+  padding: 5rem;
+  width: 25%; }
 
 .dashboard {
   display: flex;

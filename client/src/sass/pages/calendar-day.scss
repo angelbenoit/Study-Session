@@ -38,11 +38,12 @@
     }
 }
 
-.formInput label{
+.formLabel{
     color: $primary-color-dark;
+    margin-top: 1rem;
 }
 
-.formInput input{
+.formInput{
     border: none;
     background: none;
     color: $primary-color;
@@ -54,19 +55,34 @@
     }
 }
 
-.formInput{
-    margin-top: 1rem;
+.buttonSubmitGroup{
+    display: flex;
 }
 
 .formSubmit{
     border: none;
-    border-radius: 5px;
     background-color: $primary-color;
     padding: .7rem;
     color: white;
     margin-top: 1rem;
+    transition: all .3s ease-in;
+
+    &:hover{
+        background-color: $primary-color-dark;
+        cursor: pointer;
+    }
+}
+
+.formError{
+    color: red;
+}
+
+.sessionItems{
+    display: flex;
+    flex-direction: column;
 }
 
 .sessionForm{
     padding: 5rem;
+    width: 25%;
 }

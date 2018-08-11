@@ -46,10 +46,6 @@ class SpecifiedDay extends Component {
         return false;
     }
 
-    submitForm(value){
-        alert(value)
-    }
-
     render() {
         return (
             <div>
@@ -64,7 +60,7 @@ class SpecifiedDay extends Component {
                     </div>
                 </div>
                 <div>
-                    <CalendarDayForm submitForm={this.submitForm}/>
+                    <CalendarDayForm />
                 </div>
             </div>
         );
