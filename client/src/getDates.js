@@ -54,6 +54,7 @@ export const checkDate = (pickedMonth, pickedYear) => {
     const currentTime = new Date();
     const month = currentTime.getMonth();
     const year = currentTime.getFullYear();
+    console.log(pickedMonth, month)
     if(pickedYear !== year)
         return false;
     else if(pickedMonth < month)

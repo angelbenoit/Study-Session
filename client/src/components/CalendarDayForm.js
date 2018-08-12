@@ -11,7 +11,7 @@ class CalendarDayForm extends Component {
             <div className="sessionItems">
                 <label className="formLabel">{field.label}</label>
                 <input className="formInput" type="text" {...field.input} />
-                <div className="f ormError">
+                <div className="formError">
                     {touched ? error : ""}
                 </div>
             </div>

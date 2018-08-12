@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import CalendarDayForm from './CalendarDayForm';
-import { getMonthName, daysInMonth } from '../getDates';
+import CalendarDayInputList from './CalendarDayInputList';
+import { getMonthName, daysInMonth, checkDate } from '../getDates';
 import { withRouter } from 'react-router-dom';
 
 class SpecifiedDay extends Component {
     componentDidMount() {
         if (!(this.validateMonth() && this.validateDays()))
+            this.props.history.push("/calendar");
+        else if(!(checkDate(Number(this.props.match.params.month)-1, Number(this.props.match.params.year))))
             this.props.history.push("/calendar");
     }
 
@@ -62,6 +65,9 @@ class SpecifiedDay extends Component {
                     <CalendarDayForm
                         datePicked={datePicked}
                     />
+                </div>
+                <div>
+                    <CalendarDayInputList />
                 </div>
             </div>
         );
