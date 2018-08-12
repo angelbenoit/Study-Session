@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import { getMonthName, getMonthStart, checkDate } from '../getDates';
 
 class LandingPage extends Component {
@@ -146,6 +146,7 @@ class LandingPage extends Component {
         const month = getMonthName(this.state.month);
         return (
             <div className="calendar">
+
                 <div className="calendar_header">
                     <i className="fa fa-angle-double-left arrows" onClick={() => this.changeYear("backward")}></i>
                     <i className="fa fa-angle-left arrows" onClick={this.subtractMonth}></i>
@@ -157,6 +158,12 @@ class LandingPage extends Component {
 
                 <div className="calendar_body">
                     {cal}
+                </div>
+
+                <div className="calendar_goBack">
+                    <NavLink to="/dashboard" className="redirectDashboard">
+                        <i class="fa fa-arrow-left"></i> Dashboard
+                    </NavLink>
                 </div>
             </div>
         );

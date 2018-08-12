@@ -5,7 +5,7 @@ class CalendarDayInputList extends Component {
     displayData(data){
         const test = data.map(item => {
             return (
-                <li>
+                <li className="userInputListItem">
                     Subject: {item.subject} - Minutes: {item.minutes}
                 </li>
             )

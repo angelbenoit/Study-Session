@@ -18,7 +18,9 @@ html, body {
   background-color: white;
   border: 1px solid #ABAEF7;
   font-family: Arial, Helvetica, sans-serif;
-  user-select: none; }
+  user-select: none;
+  display: flex;
+  flex-direction: column; }
   .calendar_header {
     color: white;
     font-size: 2rem;
@@ -27,6 +29,16 @@ html, body {
     @media only screen and (max-width: 600px) {
       .calendar_header {
         font-size: 1rem; } }
+  .calendar_goBack {
+    background-color: #ABAEF7;
+    padding: 2rem 0; }
+    .calendar_goBack .redirectDashboard {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: underline; }
+      .calendar_goBack .redirectDashboard:hover {
+        color: #8d91f8; }
 
 .week-blank {
   height: 6rem;
@@ -134,6 +146,10 @@ html, body {
 .sessionForm {
   padding: 5rem;
   width: 25%; }
+
+.userInputListItem {
+  list-style: none;
+  color: #ABAEF7; }
 
 .dashboard {
   display: flex;

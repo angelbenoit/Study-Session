@@ -5,6 +5,7 @@ import * as actions from '../Actions';
 import { connect } from 'react-redux';
 
 class CalendarDayForm extends Component {
+
     renderField(field) {
         const { meta: { touched, error } } = field;
         return (
@@ -28,6 +29,7 @@ class CalendarDayForm extends Component {
             axios.post('/api/addToDatabase', data)
                  .then(fetchUser());
 
+            fetchUser();
             reset();
         }
 

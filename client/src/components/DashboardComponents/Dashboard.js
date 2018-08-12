@@ -5,6 +5,7 @@ import Past from './DashboardPast';
 import Goals from './DashboardGoals';
 import SideNav from '../SideNav';
 import Timer from '../Timer';
+import { withRouter } from 'react-router-dom';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -66,6 +67,7 @@ class Dashboard extends Component {
                 <SideNav
                     getSelected={this.getSelected}
                     changeSelection={this.changeSelection}
+                    redirectCalendar={() => this.props.history.push("/calendar")}
                 />
                 <div className="dashboard__data">
                     {this.displaySelected()}
@@ -75,4 +77,4 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);

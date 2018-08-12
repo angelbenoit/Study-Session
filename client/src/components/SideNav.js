@@ -39,6 +39,12 @@ class SideNav extends Component {
                 >
                     Start Your Session
                 </a>
+                <a
+                    className="dashboard__sideNav-item"
+                    onClick={this.props.redirectCalendar}
+                >
+                    Calendar
+                </a>
             </div>
         );
     }

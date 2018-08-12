@@ -29,5 +29,6 @@ module.exports = app => {
             user.sessions.push(req.body);
             user.save();
         })
+        res.end();
     })
 };

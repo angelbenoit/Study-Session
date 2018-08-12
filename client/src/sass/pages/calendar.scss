@@ -26,6 +26,8 @@ $box-border: 1px solid #ABAEF7;
     border: $box-border;
     font-family: Arial, Helvetica, sans-serif;
     user-select: none;
+    display: flex;
+    flex-direction: column;
 
     &_header{
         color: white;
@@ -35,6 +37,22 @@ $box-border: 1px solid #ABAEF7;
 
         @media only screen and (max-width: 600px) {
             font-size: 1rem;
+        }
+    }
+
+    &_goBack{
+        background-color: $primary-color;
+        padding: 2rem 0;
+
+        .redirectDashboard{
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: underline;
+
+            &:hover{
+                color: $primary-color-dark;
+            }
         }
     }
 }
