@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Field, reduxForm } from 'redux-form'
+import {fetchUser} from '../Actions';
 
 class CalendarDayForm extends Component {
     renderField(field) {
         const { meta: { touched, error } } = field;
-        const className = `form-group ${touched && error ? "has-danger" : ""}`;
-
         return (
             <div className="sessionItems">
                 <label className="formLabel">{field.label}</label>
@@ -17,15 +17,19 @@ class CalendarDayForm extends Component {
         );
     }
 
-
-
     render() {
         const { handleSubmit, reset } = this.props;
+        const date = this.props.datePicked;
 
         function submitForm(values){
-            console.log(values);
+            const data = {date: date, subject: values.subject, minutes: values.minutes};
+            console.log(data);
+            axios.post('/api/addToDatabase', data)
+                 .then(fetchUser());
+
             reset();
         }
+
         return (
             <form className="sessionForm" onSubmit={handleSubmit(submitForm)}>
                 <Field
@@ -40,10 +44,7 @@ class CalendarDayForm extends Component {
                     label="Minutes"
                     className="formInput"
                 />
-                <div className="buttonSubmitGroup">
-                    <button type='submit' className="formSubmit">Submit</button>
-                    <button onClick={reset} className="formSubmit">Clear Values</button>
-                </div>
+                <button type='submit' className="formSubmit">Submit</button>
             </form>
         );
     }

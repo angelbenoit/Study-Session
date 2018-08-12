@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
-const passport = require('passport'); 
+const passport = require('passport');
 const keys = require('./config/keys.js');
-require('./models/User.js'); 
+const bodyParser = require('body-parser');
+
+require('./models/User.js');
 require('./services/passport.js');
 mongoose.connect(keys.mongoURI);
 
@@ -16,6 +18,7 @@ app.use(cookieSession({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser());
 
 require('./routes/authRoutes.js')(app);
 const PORT = process.env.PORT || 5000;

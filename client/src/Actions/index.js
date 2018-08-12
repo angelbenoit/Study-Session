@@ -6,3 +6,4 @@ export const fetchUser = () => async (dispatch) => {
     console.log(res);
     dispatch({type: FETCH_USER, payload: res.data});
 };
+

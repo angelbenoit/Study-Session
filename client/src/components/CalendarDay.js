@@ -5,10 +5,8 @@ import { withRouter } from 'react-router-dom';
 
 class SpecifiedDay extends Component {
     componentDidMount() {
-        if (this.validateMonth() && this.validateDays())
-            console.log("VALID DATE");
-        else
-            this.props.history.push("/");
+        if (!(this.validateMonth() && this.validateDays()))
+            this.props.history.push("/calendar");
     }
 
     redirectToCalendar() {
@@ -47,6 +45,7 @@ class SpecifiedDay extends Component {
     }
 
     render() {
+        const datePicked = `${this.props.match.params.month}/${this.props.match.params.day}/${this.props.match.params.year}`;
         return (
             <div>
                 <div className="day-header">
@@ -60,7 +59,9 @@ class SpecifiedDay extends Component {
                     </div>
                 </div>
                 <div>
-                    <CalendarDayForm />
+                    <CalendarDayForm
+                        datePicked={datePicked}
+                    />
                 </div>
             </div>
         );

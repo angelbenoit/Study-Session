@@ -3,7 +3,6 @@ import LandingPage from './components/LandingPage';
 import Dashboard from './components/DashboardComponents/Dashboard';
 import Calendar from './components/Calendar';
 import CalendarDay from './components/CalendarDay';
-import Timer from './components/Timer';
 import {BrowserRouter,Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './Actions';
