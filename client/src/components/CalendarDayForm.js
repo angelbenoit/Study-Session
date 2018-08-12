@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Field, reduxForm } from 'redux-form'
-import {fetchUser} from '../Actions';
+import * as actions from '../Actions';
+import { connect } from 'react-redux';
 
 class CalendarDayForm extends Component {
     renderField(field) {
@@ -18,7 +19,7 @@ class CalendarDayForm extends Component {
     }
 
     render() {
-        const { handleSubmit, reset } = this.props;
+        const { handleSubmit, reset, fetchUser } = this.props;
         const date = this.props.datePicked;
 
         function submitForm(values){
@@ -66,4 +67,4 @@ export default reduxForm({
     form: "PostsNew",
     fields: ['subject', 'minutes'],
     validate,
-})(CalendarDayForm);
+})(connect(null, actions)(CalendarDayForm));

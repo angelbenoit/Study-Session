@@ -49,3 +49,15 @@ export const getMonthStart = (day) => {
 export const daysInMonth = (month, year) => {
     return new Date(year, month, 0).getDate();
 }
+
+export const checkDate = (pickedMonth, pickedYear) => {
+    const currentTime = new Date();
+    const month = currentTime.getMonth();
+    const year = currentTime.getFullYear();
+    if(pickedYear !== year)
+        return false;
+    else if(pickedMonth < month)
+        return false;
+    else
+        return true;
+}

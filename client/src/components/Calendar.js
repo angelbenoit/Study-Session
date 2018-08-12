@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { getMonthName, getMonthStart } from '../getDates';
+import { getMonthName, getMonthStart, checkDate } from '../getDates';
 
 class LandingPage extends Component {
     constructor(props) {
@@ -136,7 +136,8 @@ class LandingPage extends Component {
     }
 
     redirectToSpecifiedDate(day) {
-        this.props.history.push(`${this.state.month + 1}/${day}/${this.state.year}`)
+        if(checkDate(this.state.month, this.state.year))
+            this.props.history.push(`${this.state.month + 1}/${day}/${this.state.year}`)
     }
 
     render() {
