@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom';
 
 class SpecifiedDay extends Component {
     componentDidMount() {
+        // when the page loads, we validate that the user hasn't entered an invalid date in the url parameters
+        // also check that the date picked is not in the past
         if (!(this.validateMonth() && this.validateDays()))
             this.redirectToCalendar();
         else if(!(checkDate(Number(this.props.match.params.month)-1, Number(this.props.match.params.year))))
@@ -21,6 +23,7 @@ class SpecifiedDay extends Component {
         const year = Number(this.props.match.params.year);
         const days = Number(this.props.match.params.day);
         const dayCount = daysInMonth(month, year);
+        console.log(days, dayCount)
         if (dayCount < days || days < 1)
             return false;
         else
@@ -36,7 +39,7 @@ class SpecifiedDay extends Component {
             "september", "october",
             "november", "december"
         ];
-        if (Number(this.props.match.params.month) - 1 > 12 || Number(this.props.match.params.month) - 1 < 1)
+        if (Number(this.props.match.params.month) > 12 || Number(this.props.match.params.month) < 1)
             return false;
 
         const monthName = getMonthName(Number(this.props.match.params.month) - 1);

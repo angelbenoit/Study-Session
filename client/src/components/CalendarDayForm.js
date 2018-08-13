@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import uuid from 'uuid';
 
 class CalendarDayForm extends Component {
-
+    //render form with correct fields
     renderField(field) {
         const { meta: { touched, error } } = field;
         return (
@@ -25,12 +25,15 @@ class CalendarDayForm extends Component {
         const date = this.props.datePicked;
 
         function submitForm(values){
+            //turn the user input into object format
             const data = {date: date, subject: values.subject, minutes: values.minutes, itemID: uuid()};
             console.log(data);
+            //then pass that object to be added to the database and update user data afterwards
             axios.post('/api/addToDatabase', data)
                  .then(fetchUser());
 
             fetchUser();
+            //reset fields when user clicks submit
             reset();
         }
 
