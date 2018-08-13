@@ -151,6 +151,18 @@ html, body {
   list-style: none;
   color: #ABAEF7; }
 
+.removeButton {
+  background-color: #8d91f8;
+  color: white;
+  padding: .5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color .4s ease-in, font-size .2s; }
+  .removeButton:hover {
+    background-color: #ABAEF7; }
+  .removeButton:active {
+    font-size: 70%; }
+
 .dashboard {
   display: flex;
   min-height: 100vh; }

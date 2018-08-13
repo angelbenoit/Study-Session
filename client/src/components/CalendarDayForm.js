@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Field, reduxForm } from 'redux-form'
 import * as actions from '../Actions';
 import { connect } from 'react-redux';
+import uuid from 'uuid';
 
 class CalendarDayForm extends Component {
 
@@ -24,7 +25,7 @@ class CalendarDayForm extends Component {
         const date = this.props.datePicked;
 
         function submitForm(values){
-            const data = {date: date, subject: values.subject, minutes: values.minutes};
+            const data = {date: date, subject: values.subject, minutes: values.minutes, itemID: uuid()};
             console.log(data);
             axios.post('/api/addToDatabase', data)
                  .then(fetchUser());

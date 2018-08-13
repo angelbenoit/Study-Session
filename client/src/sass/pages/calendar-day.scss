@@ -91,3 +91,20 @@
     list-style: none;
     color: $primary-color;
 }
+
+.removeButton{
+    background-color: $primary-color-dark;
+    color: white;
+    padding: .5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color .4s ease-in, font-size .2s;
+
+    &:hover{
+        background-color: $primary-color;
+    }
+
+    &:active{
+        font-size: 70%;
+    }
+}

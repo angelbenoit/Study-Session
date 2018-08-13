@@ -7,9 +7,9 @@ import { withRouter } from 'react-router-dom';
 class SpecifiedDay extends Component {
     componentDidMount() {
         if (!(this.validateMonth() && this.validateDays()))
-            this.props.history.push("/calendar");
+            this.redirectToCalendar();
         else if(!(checkDate(Number(this.props.match.params.month)-1, Number(this.props.match.params.year))))
-            this.props.history.push("/calendar");
+            this.redirectToCalendar();
     }
 
     redirectToCalendar() {

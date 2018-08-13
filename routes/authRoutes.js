@@ -30,5 +30,17 @@ module.exports = app => {
             user.save();
         })
         res.end();
+    });
+
+    app.post('/api/removeItem', (req, res) => {
+        //console.log(req.body);
+        User.findById(req.user._id, function(err, user){
+            user.sessions = user.sessions.filter(item => {
+                return item.itemID !== req.body.itemID
+            });
+            //console.log(user.sessions);
+            user.save();
+        })
+        res.end();
     })
 };
