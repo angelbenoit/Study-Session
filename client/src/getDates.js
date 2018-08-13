@@ -46,6 +46,7 @@ export const getMonthStart = (day) => {
     }
 }
 
+//returns days in the month, give the month and year in the parameters
 export const daysInMonth = (month, year) => {
     return new Date(year, month, 0).getDate();
 }

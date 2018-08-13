@@ -84,27 +84,53 @@
 
 .sessionForm{
     padding: 5rem;
-    width: 25%;
 }
 
 .userInputListItem{
     list-style: none;
     color: $primary-color;
+    padding-top: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $primary-color;
 }
 
 .removeButton{
+    align-self: center;
     background-color: $primary-color-dark;
     color: white;
     padding: .5rem;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color .4s ease-in, font-size .2s;
+    transition: background-color .4s ease-in;
 
     &:hover{
         background-color: $primary-color;
     }
+}
 
-    &:active{
-        font-size: 70%;
+.day-display{
+    display: flex;
+
+    @media only screen and (max-width: 900px) {
+        flex-direction: column;
+    }
+
+    &__form{
+        width: 50%;
+
+        @media only screen and (max-width: 900px) {
+            width: 100%;
+        }
+    }
+
+    &__item{
+        width: 50%;
+        padding: 2rem;
+
+        @media only screen and (max-width: 900px) {
+            width: 100%;
+            padding: 0;
+        }
     }
 }

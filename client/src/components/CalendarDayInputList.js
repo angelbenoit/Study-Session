@@ -9,7 +9,7 @@ class CalendarDayInputList extends Component {
         const test = data.map(item => {
             return (
                 <li className="userInputListItem">
-                    Subject: {item.subject} - Minutes: {item.minutes} <a className="removeButton" onClick={() => this.removeItem(item.itemID)}>Remove</a>
+                    <p>Subject: {item.subject}</p> <p>Minutes: {item.minutes}</p> <a className="removeButton" onClick={() => this.removeItem(item.itemID)}>Remove</a>
                 </li>
             )
         });
@@ -31,11 +31,9 @@ class CalendarDayInputList extends Component {
             displayList = this.displayData(this.props.auth.sessions);
 
         return (
-            <div>
                 <ul>
                     {displayList}
                 </ul>
-            </div>
         );
     }
 }

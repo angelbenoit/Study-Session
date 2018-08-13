@@ -144,24 +144,44 @@ html, body {
   flex-direction: column; }
 
 .sessionForm {
-  padding: 5rem;
-  width: 25%; }
+  padding: 5rem; }
 
 .userInputListItem {
   list-style: none;
-  color: #ABAEF7; }
+  color: #ABAEF7;
+  padding-top: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ABAEF7; }
 
 .removeButton {
+  align-self: center;
   background-color: #8d91f8;
   color: white;
   padding: .5rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color .4s ease-in, font-size .2s; }
+  transition: background-color .4s ease-in; }
   .removeButton:hover {
     background-color: #ABAEF7; }
-  .removeButton:active {
-    font-size: 70%; }
+
+.day-display {
+  display: flex; }
+  @media only screen and (max-width: 900px) {
+    .day-display {
+      flex-direction: column; } }
+  .day-display__form {
+    width: 50%; }
+    @media only screen and (max-width: 900px) {
+      .day-display__form {
+        width: 100%; } }
+  .day-display__item {
+    width: 50%;
+    padding: 2rem; }
+    @media only screen and (max-width: 900px) {
+      .day-display__item {
+        width: 100%;
+        padding: 0; } }
 
 .dashboard {
   display: flex;

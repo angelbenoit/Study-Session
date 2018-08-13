@@ -18,6 +18,10 @@ class SpecifiedDay extends Component {
         this.props.history.push("/calendar");
     }
 
+    //this function validates that the day of the month entered in the parameter in url is valid
+    //for example, every month of the year has X amount of days and not every month has the same
+    //number of days, so for example in the month of august, there are 31 days, so this function
+    //will make sure the day in url is between 1 and 31
     validateDays() {
         const month = Number(this.props.match.params.month);
         const year = Number(this.props.match.params.year);
@@ -30,24 +34,14 @@ class SpecifiedDay extends Component {
             return true;
     }
 
+    //this functions validates that the month passed in the url parameter is valid
     validateMonth() {
-        const months = [
-            "january", "february",
-            "march", "april",
-            "may", "june",
-            "july", "august",
-            "september", "october",
-            "november", "december"
-        ];
+        //it will check to see if the month passed in is between 1 and 12,
+        //anything else will return false
         if (Number(this.props.match.params.month) > 12 || Number(this.props.match.params.month) < 1)
             return false;
 
-        const monthName = getMonthName(Number(this.props.match.params.month) - 1);
-        for (let i = 0; i < months.length; i++) {
-            if (months[i] === monthName.toLowerCase())
-                return true;
-        }
-        return false;
+        return true;
     }
 
     render() {
@@ -64,14 +58,17 @@ class SpecifiedDay extends Component {
                         <p className="day-header__item">{this.props.match.params.year}</p>
                     </div>
                 </div>
-                <div>
-                    <CalendarDayForm
-                        datePicked={datePicked}
-                    />
+                <div className="day-display">
+                    <div className="day-display__form">
+                        <CalendarDayForm
+                            datePicked={datePicked}
+                        />
+                    </div>
+                    <div className="day-display__item">
+                        <CalendarDayInputList />
+                    </div>
                 </div>
-                <div>
-                    <CalendarDayInputList />
-                </div>
+
             </div>
         );
     }
