@@ -26,7 +26,7 @@ class CalendarDayForm extends Component {
 
         function submitForm(values){
             //turn the user input into object format
-            const data = {date: date, subject: values.subject, minutes: values.minutes, itemID: uuid()};
+            const data = {date: date, subject: values.subject, minutes: Number(values.minutes), itemID: uuid()};
             console.log(data);
             //then pass that object to be added to the database and update user data afterwards
             axios.post('/api/addToDatabase', data)
@@ -65,6 +65,9 @@ function validate(values) {
 
     if(!values.minutes)
         errors.minutes = "Enter minutes";
+
+    if(!Number(values.minutes))
+        errors.minutes = "Enter a valid number for minutes"
 
     return errors;
 }
