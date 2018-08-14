@@ -38,7 +38,7 @@ class DashboardUpcoming extends Component {
   displayUpcommingSessions(data){
     const display = data.map(item => {
       return (
-        <li className="upcomming_session">
+        <li className="session_display">
             <span>{item.date}</span>
             <span>{item.subject}</span>
             <span>{item.minutes}</span>
