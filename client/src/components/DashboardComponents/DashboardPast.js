@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-export default () => {
-  return (
-    <div>
-      <h1>PAST</h1>
-    </div>
-  )
+class DashboardPast extends Component {
+  render() {
+    return (
+      <div>
+
+      </div>
+    );
+  }
 }
+
+export default DashboardPast;
