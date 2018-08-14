@@ -46,6 +46,7 @@ class SpecifiedDay extends Component {
 
     render() {
         const datePicked = `${this.props.match.params.month}/${this.props.match.params.day}/${this.props.match.params.year}`;
+
         return (
             <div>
                 <div className="day-header">
@@ -65,7 +66,9 @@ class SpecifiedDay extends Component {
                         />
                     </div>
                     <div className="day-display__item">
-                        <CalendarDayInputList />
+                        <CalendarDayInputList
+                            datePicked={datePicked}
+                        />
                     </div>
                 </div>
 
