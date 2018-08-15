@@ -52,9 +52,9 @@ class DashboardPast extends Component {
     const display = data.map(item => {
       return (
         <li className="session_display">
-            <span>{item.date}</span>
-            <span>{item.subject}</span>
-            <span>{item.minutes}</span>
+            <span><strong>Date:</strong> {item.date}</span>
+            <span><strong>Subject:</strong> {item.subject}</span>
+            <span><strong>Minutes:</strong> {item.minutes}</span>
         </li>
       );
     })
@@ -64,7 +64,7 @@ class DashboardPast extends Component {
   render() {
     const past = this.displayPastSessions(this.getPastMonthSessions(this.props.auth.sessions))
     return (
-      <div>
+      <div className="dashboard_list">
           <h2>Past Sessions</h2>
           <ul>
             {past}

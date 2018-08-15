@@ -35,13 +35,13 @@ class DashboardUpcoming extends Component {
     return currentMonthSession;
   }
 
-  displayUpcommingSessions(data){
+  displayUpcomingSessions(data){
     const display = data.map(item => {
       return (
         <li className="session_display">
-            <span>{item.date}</span>
-            <span>{item.subject}</span>
-            <span>{item.minutes}</span>
+            <span><strong>Date:</strong> {item.date}</span>
+            <span><strong>Subject:</strong> {item.subject}</span>
+            <span><strong>Minutes:</strong> {item.minutes}</span>
         </li>
       );
     })
@@ -49,10 +49,10 @@ class DashboardUpcoming extends Component {
   }
 
   render() {
-    const list = this.displayUpcommingSessions(this.getCurrentMonthSessions(this.props.auth.sessions));
+    const list = this.displayUpcomingSessions(this.getCurrentMonthSessions(this.props.auth.sessions));
     return (
-      <div>
-          <h2>Upcomming study sessions</h2>
+      <div className="dashboard_list">
+          <h2>Upcoming study sessions</h2>
           <ul>
             {list}
           </ul>

@@ -45,6 +45,13 @@ class SideNav extends Component {
                 >
                     Calendar
                 </a>
+                <a
+                    className="dashboard__sideNav-item"
+                    style={{'color': 'white', 'textDecoration': 'none'}}
+                    href="/api/logout"
+                >
+                    Logout
+                </a>
             </div>
         );
     }

@@ -183,6 +183,27 @@ html, body {
         width: 100%;
         padding: 0; } }
 
+.session_display {
+  display: flex;
+  justify-content: space-between; }
+  @media only screen and (max-width: 650px) {
+    .session_display {
+      font-size: 85%; } }
+  @media only screen and (max-width: 500px) {
+    .session_display {
+      font-size: 65%; } }
+
+.dashboard_list {
+  padding: 1rem;
+  color: #ABAEF7; }
+  @media only screen and (max-width: 650px) {
+    .dashboard_list ul {
+      padding: 0;
+      margin: 0; } }
+  @media only screen and (max-width: 500px) {
+    .dashboard_list {
+      padding: 0; } }
+
 .dashboard {
   display: flex;
   min-height: 100vh; }
@@ -212,6 +233,9 @@ html, body {
         cursor: pointer; }
   .dashboard__data {
     width: 75%; }
+    @media only screen and (max-width: 500px) {
+      .dashboard__data {
+        width: 100%; } }
 
 .login {
   background-color: grey; }

@@ -1,0 +1,27 @@
+.session_display{
+    display: flex;
+    justify-content: space-between;
+
+    @media only screen and (max-width: 650px) {
+        font-size: 85%;
+    }
+
+    @media only screen and (max-width: 500px) {
+        font-size: 65%;
+    }
+}
+
+.dashboard_list{
+    padding: 1rem;
+    color: $primary-color;
+    @media only screen and (max-width: 650px) {
+        ul{
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+        padding: 0;
+    }
+}

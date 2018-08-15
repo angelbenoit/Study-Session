@@ -40,5 +40,9 @@
 
     &__data{
         width: 75%;
+
+        @media only screen and (max-width: 500px) {
+            width: 100%;
+        }
     }
 }
