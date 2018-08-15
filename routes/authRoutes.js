@@ -42,5 +42,14 @@ module.exports = app => {
             user.save();
         })
         res.end();
+    });
+
+    app.post('/api/setGoal', (req, res) => {
+
+        User.findById(req.user._id, function(err, user){
+            user.goalSessionNumber = req.body.goalSet;
+            user.save();
+        })
+        res.end();
     })
 };

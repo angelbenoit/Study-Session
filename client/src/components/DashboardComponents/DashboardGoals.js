@@ -5,9 +5,9 @@ import * as actions from '../../Actions';
 import { connect } from 'react-redux';
 
 class DashboardGoals extends Component {
-  display(handleSubmit, reset) {
+  display(handleSubmit, reset, fetchUser) {
     if (this.hasGoal())
-      return <h3>You have a goal</h3>
+      return this.ifHasGoal(fetchUser);
     else
       return this.renderGoalForm(handleSubmit, reset);
   }
@@ -17,6 +17,21 @@ class DashboardGoals extends Component {
       return true;
     else
       return false;
+  }
+
+  ifHasGoal(fetchUser){
+    return (
+      <div>
+        <h3>You have a goal</h3>
+        <button
+          type='submit'
+          className="formSubmit"
+          onClick={() => this.resetGoal(fetchUser)}
+        >
+          Reset Goal
+        </button>
+      </div>
+    )
   }
 
   //render form with correct fields
@@ -35,10 +50,13 @@ class DashboardGoals extends Component {
 
   renderGoalForm(handleSubmit, reset) {
     return (
-      <form className="sessionForm" onSubmit={handleSubmit(val => {
-        this.submitForm(val);
-        reset();
-      })}>
+      <form
+        className="sessionForm"
+        onSubmit={handleSubmit(val => {
+          this.submitForm(val);
+          reset();
+        })}
+      >
         <Field
           name="goalSet"
           component={this.renderField}
@@ -50,13 +68,21 @@ class DashboardGoals extends Component {
     )
   }
 
+  resetGoal(fetchUser){
+    axios.post('/api/setGoal', {goalSet: 0})
+         .then(fetchUser());
+    fetchUser();
+  }
+
   submitForm(values) {
-    console.log(values);
+    axios.post('/api/setGoal', values)
+         .then(this.props.fetchUser());
+    this.props.fetchUser();
   }
 
   render() {
-    const { handleSubmit, reset } = this.props;
-    const test = this.display(handleSubmit, reset);
+    const { handleSubmit, reset, fetchUser } = this.props;
+    const test = this.display(handleSubmit, reset, fetchUser);
     return (
       <div>
         {test}
@@ -72,7 +98,7 @@ function mapStateToProps(state) {
 function validate(values) {
   const errors = {};
 
-  if (!Number(values.goalSet))
+  if (!Number(values.goalSet) || Number(values.goalSet) <= 0)
     errors.goalSet = "Enter a valid number"
 
   return errors;

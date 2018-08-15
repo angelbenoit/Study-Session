@@ -43,7 +43,7 @@ class DashboardPast extends Component {
       //at index 1 will hold the dayIndex
       const day1 = a.date.split("/")[1];
       const day2 = b.date.split("/")[1];
-      return day1 - day2;
+      return day2 - day1;
     })
     return pastSessions;
   }
