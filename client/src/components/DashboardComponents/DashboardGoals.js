@@ -5,11 +5,11 @@ import * as actions from '../../Actions';
 import { connect } from 'react-redux';
 
 class DashboardGoals extends Component {
-  display(handleSubmit) {
+  display(handleSubmit, reset) {
     if (this.hasGoal())
       return <h3>You have a goal</h3>
     else
-      return this.renderGoalForm(handleSubmit);
+      return this.renderGoalForm(handleSubmit, reset);
   }
 
   hasGoal() {
@@ -33,15 +33,19 @@ class DashboardGoals extends Component {
     );
   }
 
-  renderGoalForm(handleSubmit) {
+  renderGoalForm(handleSubmit, reset) {
     return (
-      <form className="sessionForm" onSubmit={handleSubmit(this.submitForm)}>
+      <form className="sessionForm" onSubmit={handleSubmit(val => {
+        this.submitForm(val);
+        reset();
+      })}>
         <Field
           name="goalSet"
           component={this.renderField}
           label="Set the length of your goal in days"
           className="formInput"
         />
+        <button type='submit' className="formSubmit">Submit</button>
       </form>
     )
   }
@@ -51,8 +55,8 @@ class DashboardGoals extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
-    const test = this.display(handleSubmit);
+    const { handleSubmit, reset } = this.props;
+    const test = this.display(handleSubmit, reset);
     return (
       <div>
         {test}
@@ -68,11 +72,8 @@ function mapStateToProps(state) {
 function validate(values) {
   const errors = {};
 
-  if (!values.goalDays)
-    errors.goalDays = "Enter number of days";
-
-  if (!Number(values.goalDays))
-    errors.goalDays = "Enter a valid number"
+  if (!Number(values.goalSet))
+    errors.goalSet = "Enter a valid number"
 
   return errors;
 }
