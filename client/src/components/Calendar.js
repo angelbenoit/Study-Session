@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
-import { getMonthName, getMonthStart, checkDate } from '../getDates';
+import { getMonthName, getMonthStart, checkDate, pastDate } from '../getDates';
 
 class LandingPage extends Component {
     constructor(props) {
@@ -136,7 +136,10 @@ class LandingPage extends Component {
     }
 
     redirectToSpecifiedDate(day) {
-        if(checkDate(this.state.month, this.state.year))
+        const month = (this.state.month+1).toString();
+        const year = (this.state.year).toString();
+        const dateFormat = `${month}/${day.toString()}/${year}`;
+        if(checkDate(this.state.month, this.state.year) && !pastDate(dateFormat))
             this.props.history.push(`${this.state.month + 1}/${day}/${this.state.year}`)
     }
 

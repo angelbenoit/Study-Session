@@ -120,7 +120,7 @@ class LandingPage extends Component {
                                         View past sessions and set goals.
                                     </p>
                                 </div>
-                                <img src={require("../images/landing.jpg")} alt="test"/>
+                                <img src={require("../images/dashboard.png")} alt="test"/>
                             </div>
 
                         </div>

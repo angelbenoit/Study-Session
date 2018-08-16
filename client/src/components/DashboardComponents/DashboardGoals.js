@@ -60,7 +60,7 @@ class DashboardGoals extends Component {
         <Field
           name="goalSet"
           component={this.renderField}
-          label="Set the length of your goal in days"
+          label="Set the amount of sessions your goal is to complete"
           className="formInput"
         />
         <button type='submit' className="formSubmit">Submit</button>

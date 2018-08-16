@@ -61,3 +61,27 @@ export const checkDate = (pickedMonth, pickedYear) => {
     else
         return true;
 }
+
+export const pastDate = (itemDate) => {
+    const date = new Date();
+    const monthIndex = date.getMonth();
+    const dayIndex = date.getDate();
+    const currentYear = date.getFullYear();
+    const dateFormat = itemDate.split("/");
+    //console.log(dateFormat, monthIndex, dayIndex, currentYear)
+    //if the year passed in is less than the current year, then it means its from the past
+    if (dateFormat[2] < currentYear)
+      return true;
+
+    //if it's the current year but a previous month
+    else if (Number(dateFormat[2]) === currentYear && Number(dateFormat[0]) < monthIndex + 1)
+      return true;
+
+    //if it's the current year and month, check if the day is from earlier in the month
+    else if ((Number(dateFormat[2]) === currentYear && Number(dateFormat[0]) === monthIndex + 1) && Number(dateFormat[1]) < dayIndex)
+      return true;
+
+    //otherwise return false, meaning not from the past
+    else
+      return false;
+  }
