@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Countdown from 'react-countdown-now';
+import { Progress, Segment } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css';
 
 class Timer extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -12,10 +14,11 @@ class Timer extends Component {
             finishedSubjects: []
         }
 
+        this.getSessionList = this.getSessionList.bind(this);
         this.getTodaysSession = this.getTodaysSession.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getTodaysSession(this.props.auth.sessions)
     }
 
@@ -28,9 +31,9 @@ class Timer extends Component {
         const complete = [];
         const incomplete = [];
 
-        for(let i = 0; i < data.length; i++){
-            if(data[i].date === totalDate){
-                if(data[i].complete)
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].date === totalDate) {
+                if (data[i].complete)
                     complete.push(data[i])
                 else
                     incomplete.push(data[i])
@@ -43,17 +46,47 @@ class Timer extends Component {
         })
     }
 
+    getSessionList(type) {
+        let listType;
+        if (type === "incomplete")
+            listType = this.state.incompleteSubjects;
+        else
+            listType = this.state.finishedSubjects;
+
+        const list = listType.map(item => {
+            return (
+                <li>
+                    {item.subject} for {item.minutes} minutes
+                </li>
+            );
+        })
+        return list;
+    }
+
     render() {
-        console.log(this.state)
+
         return (
             <div>
-                <div>
-                    <Countdown date={Date.now() + 60000}/>
+                <div className="subject_lists">
+                    <div className="incomplete_subjects">
+                        <h1>Incomplete</h1>
+                        <ul>
+                            {this.getSessionList("incomplete")}
+                        </ul>
+                    </div>
+                    <div className="complete_subjects">
+                        <h1>Completed</h1>
+                        <ul>
+                            {this.getSessionList("complete")}
+                        </ul>
+                    </div>
                 </div>
-                <div>
 
-                </div>
-                <div>
+
+                <div className="timer_display">
+                    <Segment inverted>
+                        <Progress percent={34} inverted color='red' progress />
+                    </Segment>
 
                 </div>
             </div>
