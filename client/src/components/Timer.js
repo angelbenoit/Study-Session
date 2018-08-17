@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Countdown from 'react-countdown-now';
 import { Progress, Segment } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
@@ -14,12 +13,30 @@ class Timer extends Component {
             finishedSubjects: []
         }
 
+        this.countDown = this.countDown.bind(this);
         this.getSessionList = this.getSessionList.bind(this);
         this.getTodaysSession = this.getTodaysSession.bind(this);
     }
 
     componentDidMount() {
         this.getTodaysSession(this.props.auth.sessions)
+    }
+
+    countDown(minute){
+        let seconds = 0;
+        let timer = setInterval(function () {
+
+            if(seconds === 55 && minute === 0)
+              clearInterval(timer);
+
+            console.log(minute, seconds);
+            --seconds;
+
+            if (seconds < 0) {
+                minute--;
+                seconds = 59;
+            }
+        }, 1000);
     }
 
     getTodaysSession(data) {
@@ -64,7 +81,7 @@ class Timer extends Component {
     }
 
     render() {
-
+        this.countDown(1);
         return (
             <div>
                 <div className="subject_lists">

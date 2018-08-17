@@ -212,7 +212,6 @@ html, body {
       flex-direction: column; } }
   .dashboard__sideNav {
     color: white;
-    font-weight: bold;
     display: flex;
     flex-direction: column;
     background-image: linear-gradient(to left top, #c5c7ff, #ABAEF7, #8d91f8);
@@ -223,6 +222,9 @@ html, body {
         width: 100%;
         flex-direction: column; } }
     .dashboard__sideNav-item {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
       padding: 2rem;
       border-bottom: 1px solid #c5c7ff; }
       @media only screen and (max-width: 500px) {
