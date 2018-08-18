@@ -1,0 +1,26 @@
+.subject_list{
+    display: flex;
+    justify-content: space-between;
+}
+
+.timer_display{
+    display: flex;
+    flex-direction: column;
+}
+
+.startTimer{
+    border: none;
+    background-color: $primary-color;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 1rem;
+    border-radius: 2px;
+    display: flex;
+    align-self: center;
+
+    &:hover{
+        background-color: $primary-color-dark;
+    }
+}

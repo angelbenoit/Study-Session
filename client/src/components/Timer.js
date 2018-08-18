@@ -18,6 +18,7 @@ class Timer extends Component {
         this.getSessionList = this.getSessionList.bind(this);
         this.getTodaysSession = this.getTodaysSession.bind(this);
         this.initializeCurrentSubject = this.initializeCurrentSubject.bind(this);
+        this.nextSubject = this.nextSubject.bind(this);
     }
 
     componentWillMount() {
@@ -26,7 +27,6 @@ class Timer extends Component {
 
     componentDidMount(){
         this.initializeCurrentSubject();
-        //this.countDown(1);
     }
 
     countDown(minute){
@@ -40,6 +40,7 @@ class Timer extends Component {
             //console.log(`percentage is ${((secondCounter/totalSeconds)*100).toFixed(0)}`);
             if(seconds === 0 && minute === 0){
               clearInterval(timer);
+              this.nextSubject();
             }
 
             console.log(minute, seconds, secondCounter);
@@ -127,16 +128,42 @@ class Timer extends Component {
         }
     }
 
+    nextSubject(){
+        if(this.state.currentSubject){
+            if(this.state.incompleteSubjects){
+                const current = this.state.currentSubject;
+                const incomplete = this.state.incompleteSubjects;
+                const newCurrent = incomplete.pop();
+                this.setState({
+                    incompleteSubjects: incomplete,
+                    currentSubject: newCurrent,
+                    finishedSubjects: this.state.finishedSubjects.concat(current)
+                });
+            }
+        }
+    }
+
     render() {
         let perc = this.state.currentPercentageCompleted;
         return (
             <div>
-                <div className="subject_lists">
+                <div className="subject_list">
                     <div className="incomplete_subjects">
                         <h1>Incomplete</h1>
                         <ul>
                             {this.getSessionList("incomplete")}
                         </ul>
+                    </div>
+                    <div className="current_subject">
+                        <h1>Current Subject</h1>
+                        {
+                            this.state.currentSubject ?
+                            <p>
+                                Now studying {this.state.currentSubject.subject}
+                                &nbsp;for {this.state.currentSubject.minutes} minutes
+                            </p> : ""
+                        }
+
                     </div>
                     <div className="complete_subjects">
                         <h1>Completed</h1>
@@ -148,9 +175,9 @@ class Timer extends Component {
 
 
                 <div className="timer_display">
-                    <button onClick={() => this.countDown(1)}>Start</button>
+                    <button className="startTimer" onClick={() => this.countDown(1)}>Start</button>
                     <Segment inverted>
-                        <Progress percent={perc} inverted color='red' progress />
+                        <Progress percent={perc} inverted color='violet' progress />
                     </Segment>
                 </div>
             </div>

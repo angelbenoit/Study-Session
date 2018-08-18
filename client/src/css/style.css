@@ -232,6 +232,7 @@ html, body {
           padding: 1.5rem; } }
       .dashboard__sideNav-item:hover {
         background-color: #c5c7ff;
+        color: white;
         cursor: pointer; }
   .dashboard__data {
     width: 75%; }
@@ -362,3 +363,25 @@ html, body {
     transform: translateY(10px); }
   100% {
     transform: translateY(0px); } }
+
+.subject_list {
+  display: flex;
+  justify-content: space-between; }
+
+.timer_display {
+  display: flex;
+  flex-direction: column; }
+
+.startTimer {
+  border: none;
+  background-color: #ABAEF7;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding: 1rem;
+  border-radius: 2px;
+  display: flex;
+  align-self: center; }
+  .startTimer:hover {
+    background-color: #8d91f8; }
