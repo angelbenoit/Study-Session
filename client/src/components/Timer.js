@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Progress, Segment } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
+import * as actions from '../Actions';
+import axios from 'axios';
 
 class Timer extends Component {
     constructor(props) {
@@ -30,10 +32,11 @@ class Timer extends Component {
 
     componentDidMount(){
         this.initializeCurrentSubject();
+        this.checkCompleted();
     }
 
     checkCompleted(){
-        console.log(this.state.incompleteSubjects.length, JSON.stringify(this.state.currentSubject))
+        //console.log(this.state.incompleteSubjects.length, JSON.stringify(this.state.currentSubject))
         if(this.state.incompleteSubjects.length === 0 && JSON.stringify(this.state.currentSubject) === "{}"){
             this.setState({ completedTodaysSession: true });
             console.log("completed")
@@ -133,10 +136,11 @@ class Timer extends Component {
         //if the incomplete array exists, then remove the last one and set state
         //for current subject to that last subject in incomplete list and update the
         //incomplete list with the removed item
-        if(this.state.incompleteSubjects && this.state.incompleteSubjects[lastSubjectIndex]){
-            const lastSubject = this.state.incompleteSubjects.pop();
+        if(this.state.incompleteSubjects.length && this.state.incompleteSubjects[lastSubjectIndex]){
             //updating state without the last item
             const filterIncomplete = this.state.incompleteSubjects;
+            const lastSubject = filterIncomplete.pop();
+
             this.setState({
                 currentSubject: lastSubject,
                 incompleteSubjects: filterIncomplete
@@ -145,6 +149,7 @@ class Timer extends Component {
     }
 
     nextSubject(){
+        this.updateCurrent(this.state.currentSubject);
         if(this.state.currentSubject){
             //console.log(this.state.currentSubject, this.state.incompleteSubjects)
             if(this.state.incompleteSubjects.length){
@@ -166,6 +171,12 @@ class Timer extends Component {
                 })
             }
         }
+    }
+
+    updateCurrent(current){
+        axios.post('/api/updateSubject', current)
+             .then(this.props.fetchUser());
+        this.props.fetchUser();
     }
 
     render() {
@@ -215,4 +226,4 @@ function mapStateToProps(state) {
     return { auth: state.auth }
 }
 
-export default connect(mapStateToProps)(Timer);
+export default connect(mapStateToProps, actions)(Timer);
