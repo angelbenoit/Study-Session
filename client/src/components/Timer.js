@@ -11,9 +11,12 @@ class Timer extends Component {
             incompleteSubjects: [],
             currentSubject: {},
             currentPercentageCompleted: 0,
-            finishedSubjects: []
+            finishedSubjects: [],
+            timeDisplay: "",
+            completedTodaysSession: false
         }
 
+        this.checkCompleted = this.checkCompleted.bind(this);
         this.countDown = this.countDown.bind(this);
         this.getSessionList = this.getSessionList.bind(this);
         this.getTodaysSession = this.getTodaysSession.bind(this);
@@ -29,18 +32,32 @@ class Timer extends Component {
         this.initializeCurrentSubject();
     }
 
+    checkCompleted(){
+        console.log(this.state.incompleteSubjects.length, JSON.stringify(this.state.currentSubject))
+        if(this.state.incompleteSubjects.length === 0 && JSON.stringify(this.state.currentSubject) === "{}"){
+            this.setState({ completedTodaysSession: true });
+            console.log("completed")
+        }
+        else{
+            this.setState({ completedTodaysSession: false });
+            console.log(JSON.stringify(this.state.currentSubject))
+        }
+    }
+
     countDown(minute){
         let seconds = 0;
         let secondCounter = 0;
         let percentage = 0;
         const totalSeconds = minute*60;
         let timer = setInterval(() => {
+            let display = `${minute}:${seconds}`;
             percentage = ((secondCounter/totalSeconds)*100).toFixed(0);
-            this.setState({ currentPercentageCompleted: percentage});
-            //console.log(`percentage is ${((secondCounter/totalSeconds)*100).toFixed(0)}`);
+            this.setState({ currentPercentageCompleted: percentage, timeDisplay: display });
+
             if(seconds === 0 && minute === 0){
               clearInterval(timer);
               this.nextSubject();
+              this.checkCompleted();
             }
 
             console.log(minute, seconds, secondCounter);
@@ -71,15 +88,15 @@ class Timer extends Component {
         //fill out complete and incomplete array to include in the state
         const complete = [];
         const incomplete = [];
-
         //this for loop compares the dates, and inside the if state,
         //fill in the complete and incomplete array
         for (let i = 0; i < data.length; i++) {
             if (data[i].date === totalDate) {
-                if (data[i].complete)
+                if(data[i].complete)
                     complete.push(data[i])
                 else
                     incomplete.push(data[i])
+
             }
         }
 
@@ -113,7 +130,6 @@ class Timer extends Component {
     initializeCurrentSubject(){
         //get index of last item in incompleted subjects list
         const lastSubjectIndex = this.state.incompleteSubjects.length-1;
-        console.log(lastSubjectIndex, this.state.incompleteSubjects);
         //if the incomplete array exists, then remove the last one and set state
         //for current subject to that last subject in incomplete list and update the
         //incomplete list with the removed item
@@ -130,7 +146,8 @@ class Timer extends Component {
 
     nextSubject(){
         if(this.state.currentSubject){
-            if(this.state.incompleteSubjects){
+            //console.log(this.state.currentSubject, this.state.incompleteSubjects)
+            if(this.state.incompleteSubjects.length){
                 const current = this.state.currentSubject;
                 const incomplete = this.state.incompleteSubjects;
                 const newCurrent = incomplete.pop();
@@ -140,47 +157,56 @@ class Timer extends Component {
                     finishedSubjects: this.state.finishedSubjects.concat(current)
                 });
             }
+            else{
+                const current = this.state.currentSubject;
+                this.setState({
+                    incompleteSubjects: [],
+                    currentSubject: {},
+                    finishedSubjects: this.state.finishedSubjects.concat(current)
+                })
+            }
         }
     }
 
     render() {
         let perc = this.state.currentPercentageCompleted;
         return (
-            <div>
-                <div className="subject_list">
-                    <div className="incomplete_subjects">
-                        <h1>Incomplete</h1>
-                        <ul>
-                            {this.getSessionList("incomplete")}
-                        </ul>
-                    </div>
-                    <div className="current_subject">
-                        <h1>Current Subject</h1>
-                        {
-                            this.state.currentSubject ?
-                            <p>
-                                Now studying {this.state.currentSubject.subject}
-                                &nbsp;for {this.state.currentSubject.minutes} minutes
-                            </p> : ""
-                        }
+                !this.state.completedTodaysSession ?
+                (<div>
+                    <div className="subject_list">
+                        <div className="incomplete_subjects">
+                            <h1>Incomplete</h1>
+                            <ul>
+                                {this.getSessionList("incomplete")}
+                            </ul>
+                        </div>
+                        <div className="current_subject">
+                            <h1>Current Subject</h1>
+                            {
+                                this.state.currentSubject ?
+                                <p>
+                                    Now studying {this.state.currentSubject.subject}
+                                    &nbsp;for {this.state.currentSubject.minutes} minutes
+                                </p> : ""
+                            }
 
+                        </div>
+                        <div className="complete_subjects">
+                            <h1>Completed</h1>
+                            <ul>
+                                {this.getSessionList("complete")}
+                            </ul>
+                        </div>
                     </div>
-                    <div className="complete_subjects">
-                        <h1>Completed</h1>
-                        <ul>
-                            {this.getSessionList("complete")}
-                        </ul>
+
+                    <div className="timer_display">
+                        <button className="startTimer" onClick={() => this.countDown(1)}>Start</button>
+                        <h4>{this.state.timeDisplay}</h4>
+                        <Segment inverted>
+                            <Progress percent={perc} inverted color='violet' progress />
+                        </Segment>
                     </div>
-                </div>
-
-
-                <div className="timer_display">
-                    <button className="startTimer" onClick={() => this.countDown(1)}>Start</button>
-                    <Segment inverted>
-                        <Progress percent={perc} inverted color='violet' progress />
-                    </Segment>
-                </div>
-            </div>
+                </div>) : <h1>You've finished your session</h1>
         );
     }
 }
