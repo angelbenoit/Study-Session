@@ -17,7 +17,7 @@ class DashboardUpcoming extends Component {
         //add 1 to monthIndex because it originally gives month 0 based
         //also make sure the it only gets days that are on the current day
         //and any days up until the end of the month
-        if(Number(temp[0]) === monthIndex+1 && Number(temp[1] >= dayIndex)){
+        if(Number(temp[0]) === monthIndex+1 && Number(temp[1] >= dayIndex) && !item.complete){
           //push the whole object if it's on current month
           currentMonthSession.push(item);
         }

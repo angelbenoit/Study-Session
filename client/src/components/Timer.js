@@ -10,15 +10,11 @@ class Timer extends Component {
         super(props);
 
         this.state = {
-            incompleteSubjects: [],
-            currentSubject: {},
             currentPercentageCompleted: 0,
-            finishedSubjects: [],
             timeDisplay: "",
-            completedTodaysSession: false
+            timerActive: false
         }
 
-        this.checkCompleted = this.checkCompleted.bind(this);
         this.countDown = this.countDown.bind(this);
         this.getSessionList = this.getSessionList.bind(this);
         this.nextSubject = this.nextSubject.bind(this);
@@ -29,28 +25,11 @@ class Timer extends Component {
         this.props.getTodaysSession();
     }
 
-    componentDidMount(){
-        this.checkCompleted();
-    }
-
-    checkCompleted(){
-        this.props.fetchUser();
-        this.props.getTodaysSession()
-        //console.log(JSON.stringify(this.props.today.current))
-        if(this.props.today.incompleted.length === 0 && JSON.stringify(this.props.today.current) === "{}"){
-            this.setState({ completedTodaysSession: true });
-            console.log(this.props.today.incompleted)
-        }
-        else{
-            this.setState({ completedTodaysSession: false });
-            console.log(JSON.stringify(this.props.today.current))
-        }
-    }
-
     countDown(minute){
         let seconds = 0;
         let secondCounter = 0;
         let percentage = 0;
+        this.setState({ timerActive: true });
         const totalSeconds = minute*60;
         let timer = setInterval(() => {
             let display = `${minute}:${seconds}`;
@@ -60,7 +39,7 @@ class Timer extends Component {
             if(seconds === 0 && minute === 0){
               clearInterval(timer);
               this.nextSubject();
-              //this.checkCompleted();
+              this.setState({ timerActive: false })
             }
 
             console.log(minute, seconds, secondCounter);
@@ -103,8 +82,7 @@ class Timer extends Component {
     updateCurrent(current){
         axios.post('/api/updateSubject', current)
              .then(this.props.fetchUser())
-             .then(this.props.getTodaysSession())
-             .then(this.checkCompleted());
+             .then(this.props.getTodaysSession());
     }
 
     render() {
@@ -135,8 +113,8 @@ class Timer extends Component {
                     </div>
 
                     <div className="timer_display">
-                        <button className="startTimer" onClick={() => this.countDown(1)}>Start</button>
-                        <h4>{this.state.timeDisplay}</h4>
+                        <button disabled={this.state.timerActive} className="startTimer" onClick={() => this.countDown(this.props.today.current.minutes)}>Start</button>
+                        <h4 className="timer_display__clockCountdown">{this.state.timeDisplay}</h4>
                         <Segment inverted>
                             <Progress percent={perc} inverted color='violet' progress />
                         </Segment>

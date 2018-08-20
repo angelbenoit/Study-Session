@@ -6,6 +6,10 @@
 .timer_display{
     display: flex;
     flex-direction: column;
+
+    &__clockCountdown{
+        align-self: center;
+    }
 }
 
 .startTimer{
