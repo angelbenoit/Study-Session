@@ -11,6 +11,7 @@ import './css/style.css';
 class App extends Component {
     componentDidMount() {
         this.props.fetchUser();
+        this.props.getTodaysSession();
     }
 
   render() {

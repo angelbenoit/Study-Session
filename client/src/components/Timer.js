@@ -21,29 +21,29 @@ class Timer extends Component {
         this.checkCompleted = this.checkCompleted.bind(this);
         this.countDown = this.countDown.bind(this);
         this.getSessionList = this.getSessionList.bind(this);
-        this.getTodaysSession = this.getTodaysSession.bind(this);
-        this.initializeCurrentSubject = this.initializeCurrentSubject.bind(this);
         this.nextSubject = this.nextSubject.bind(this);
     }
 
     componentWillMount() {
-        this.getTodaysSession(this.props.auth.sessions)
+        this.props.fetchUser();
+        this.props.getTodaysSession();
     }
 
     componentDidMount(){
-        this.initializeCurrentSubject();
         this.checkCompleted();
     }
 
     checkCompleted(){
-        //console.log(this.state.incompleteSubjects.length, JSON.stringify(this.state.currentSubject))
-        if(this.state.incompleteSubjects.length === 0 && JSON.stringify(this.state.currentSubject) === "{}"){
+        this.props.fetchUser();
+        this.props.getTodaysSession()
+        //console.log(JSON.stringify(this.props.today.current))
+        if(this.props.today.incompleted.length === 0 && JSON.stringify(this.props.today.current) === "{}"){
             this.setState({ completedTodaysSession: true });
-            console.log("completed")
+            console.log(this.props.today.incompleted)
         }
         else{
             this.setState({ completedTodaysSession: false });
-            console.log(JSON.stringify(this.state.currentSubject))
+            console.log(JSON.stringify(this.props.today.current))
         }
     }
 
@@ -60,7 +60,7 @@ class Timer extends Component {
             if(seconds === 0 && minute === 0){
               clearInterval(timer);
               this.nextSubject();
-              this.checkCompleted();
+              //this.checkCompleted();
             }
 
             console.log(minute, seconds, secondCounter);
@@ -75,49 +75,14 @@ class Timer extends Component {
         }, 1000);
     }
 
-    //this function will get only today's data from user api
-    getTodaysSession(data) {
-        const today = new Date();
-        const day = today.getDate();
-        const month = today.getMonth() + 1;
-        const year = today.getFullYear();
-        /*
-            totalDate will create a string in mm/dd/yyyy to compare all the dates in
-            the api(which are strings). The api has sessions array which is made up of objects.
-            each one contains the information about the session, which includes date
-        */
-        const totalDate = `${month}/${day}/${year}`;
-
-        //fill out complete and incomplete array to include in the state
-        const complete = [];
-        const incomplete = [];
-        //this for loop compares the dates, and inside the if state,
-        //fill in the complete and incomplete array
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].date === totalDate) {
-                if(data[i].complete)
-                    complete.push(data[i])
-                else
-                    incomplete.push(data[i])
-
-            }
-        }
-
-        //finally set the state with the filled in arrays
-        this.setState({
-            incompleteSubjects: incomplete,
-            finishedSubjects: complete
-        })
-    }
-
     //this function will return list of subjects depending on what type gets passed in the parameter
     getSessionList(type) {
         let listType;
         //listType will be equal to incompletesubjects or finishedsubjects in the state depending on type
         if (type === "incomplete")
-            listType = this.state.incompleteSubjects;
+            listType = this.props.today.incompleted;
         else
-            listType = this.state.finishedSubjects;
+            listType = this.props.today.completed;
 
         //will return list items
         const list = listType.map(item => {
@@ -130,59 +95,22 @@ class Timer extends Component {
         return list;
     }
 
-    initializeCurrentSubject(){
-        //get index of last item in incompleted subjects list
-        const lastSubjectIndex = this.state.incompleteSubjects.length-1;
-        //if the incomplete array exists, then remove the last one and set state
-        //for current subject to that last subject in incomplete list and update the
-        //incomplete list with the removed item
-        if(this.state.incompleteSubjects.length && this.state.incompleteSubjects[lastSubjectIndex]){
-            //updating state without the last item
-            const filterIncomplete = this.state.incompleteSubjects;
-            const lastSubject = filterIncomplete.pop();
-
-            this.setState({
-                currentSubject: lastSubject,
-                incompleteSubjects: filterIncomplete
-            });
-        }
-    }
-
     nextSubject(){
-        this.updateCurrent(this.state.currentSubject);
-        if(this.state.currentSubject){
-            //console.log(this.state.currentSubject, this.state.incompleteSubjects)
-            if(this.state.incompleteSubjects.length){
-                const current = this.state.currentSubject;
-                const incomplete = this.state.incompleteSubjects;
-                const newCurrent = incomplete.pop();
-                this.setState({
-                    incompleteSubjects: incomplete,
-                    currentSubject: newCurrent,
-                    finishedSubjects: this.state.finishedSubjects.concat(current)
-                });
-            }
-            else{
-                const current = this.state.currentSubject;
-                this.setState({
-                    incompleteSubjects: [],
-                    currentSubject: {},
-                    finishedSubjects: this.state.finishedSubjects.concat(current)
-                })
-            }
-        }
+        this.updateCurrent(this.props.today.current);
+        this.props.getTodaysSession();
     }
 
     updateCurrent(current){
         axios.post('/api/updateSubject', current)
-             .then(this.props.fetchUser());
-        this.props.fetchUser();
+             .then(this.props.fetchUser())
+             .then(this.props.getTodaysSession())
+             .then(this.checkCompleted());
     }
 
     render() {
         let perc = this.state.currentPercentageCompleted;
         return (
-                !this.state.completedTodaysSession ?
+                JSON.stringify(this.props.today.current) !== "{}" ?
                 (<div>
                     <div className="subject_list">
                         <div className="incomplete_subjects">
@@ -193,14 +121,10 @@ class Timer extends Component {
                         </div>
                         <div className="current_subject">
                             <h1>Current Subject</h1>
-                            {
-                                this.state.currentSubject ?
                                 <p>
-                                    Now studying {this.state.currentSubject.subject}
-                                    &nbsp;for {this.state.currentSubject.minutes} minutes
-                                </p> : ""
-                            }
-
+                                    Now studying {this.props.today.current.subject}
+                                    &nbsp;for {this.props.today.current.minutes} minutes
+                                </p>
                         </div>
                         <div className="complete_subjects">
                             <h1>Completed</h1>
@@ -223,7 +147,10 @@ class Timer extends Component {
 }
 
 function mapStateToProps(state) {
-    return { auth: state.auth }
+    return {
+        auth: state.auth,
+        today: state.today
+     }
 }
 
 export default connect(mapStateToProps, actions)(Timer);
