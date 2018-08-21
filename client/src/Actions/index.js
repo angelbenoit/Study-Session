@@ -28,26 +28,28 @@ export const getTodaysSession = () => async (dispatch) => {
     let current = {};
     //this for loop compares the dates, and inside the if state,
     //fill in the complete and incomplete array
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].date === totalDate) {
-            if (data[i].complete)
-                complete.push(data[i]);
-            else
-                incomplete.push(data[i]);
+    if(data){
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] && data[i].date === totalDate) {
+                if (data[i].complete)
+                    complete.push(data[i]);
+                else
+                    incomplete.push(data[i]);
+            }
         }
+
+        if(incomplete.length){
+            current = incomplete.pop();
+        }
+
+        const sessions = {
+            current,
+            completed: complete,
+            incompleted: incomplete
+        }
+
+        console.log("updating sesions", sessions)
+
+        dispatch({ type: FETCH_TODAY, payload: sessions });
     }
-
-    if(incomplete.length){
-        current = incomplete.pop();
-    }
-
-    const sessions = {
-        current,
-        completed: complete,
-        incompleted: incomplete
-    }
-
-    console.log("updating sesions", sessions)
-
-    dispatch({ type: FETCH_TODAY, payload: sessions });
 };

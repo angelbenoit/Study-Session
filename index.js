@@ -18,7 +18,7 @@ app.use(cookieSession({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser());
 
 require('./routes/authRoutes.js')(app);
 const PORT = process.env.PORT || 5000;

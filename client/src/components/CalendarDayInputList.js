@@ -8,7 +8,7 @@ class CalendarDayInputList extends Component {
     displayData(data) {
         const userInput = [];
         for (let i = 0; i < data.length; i++) {
-            if (data[i].date === this.props.datePicked) {
+            if (data[i] && data[i].date === this.props.datePicked) {
                 userInput.push(
                     <li className="userInputListItem">
                         <p>Subject: {data[i].subject}</p> <p>Minutes: {data[i].minutes}</p> <a className="removeButton" onClick={() => this.removeItem(data[i].itemID)}>Remove</a>

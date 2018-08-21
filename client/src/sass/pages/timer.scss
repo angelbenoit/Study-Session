@@ -1,6 +1,33 @@
 .subject_list{
     display: flex;
     justify-content: space-between;
+    padding-bottom: 1rem;
+
+    @media only screen and (max-width: 790px) {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1{
+        color: $primary-color-dark;
+        @media only screen and (max-width: 850px) {
+            font-size: 1.5rem;
+        }
+
+    }
+    li, p{
+        color: $primary-color;
+        @media only screen and (max-width: 850px) {
+            font-size: 90%;
+        }
+
+    }
+}
+
+.current_subject{
+    @media only screen and (max-width: 790px) {
+        order: 3;
+    }
 }
 
 .timer_display{

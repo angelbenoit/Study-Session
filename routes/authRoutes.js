@@ -24,7 +24,7 @@ module.exports = app => {
     });
 
     app.post('/api/addToDatabase', (req, res) => {
-        //console.log(req.body)
+        console.log(req.body)
         User.findById(req.user._id, function (err, user) {
             user.sessions.push(req.body);
             user.save();
@@ -64,10 +64,17 @@ module.exports = app => {
                 itemID: req.body.itemID,
                 complete: true
             }
+
             filterArr.push(updatedSubject);
             user.sessions = filterArr;
+            //console.log(user.totalSubjectsCompleted);
+            if(user.totalSubjectsCompleted)
+                user.totalSubjectsCompleted++;
+            else
+                user.totalSubjectsCompleted = 1;
+
             user.save();
         })
         res.end();
-    })
+    });
 };

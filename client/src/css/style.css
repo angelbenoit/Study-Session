@@ -366,7 +366,26 @@ html, body {
 
 .subject_list {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding-bottom: 1rem; }
+  @media only screen and (max-width: 790px) {
+    .subject_list {
+      flex-direction: column;
+      align-items: center; } }
+  .subject_list h1 {
+    color: #8d91f8; }
+    @media only screen and (max-width: 850px) {
+      .subject_list h1 {
+        font-size: 1.5rem; } }
+  .subject_list li, .subject_list p {
+    color: #ABAEF7; }
+    @media only screen and (max-width: 850px) {
+      .subject_list li, .subject_list p {
+        font-size: 90%; } }
+
+@media only screen and (max-width: 790px) {
+  .current_subject {
+    order: 3; } }
 
 .timer_display {
   display: flex;

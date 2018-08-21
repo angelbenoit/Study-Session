@@ -28,7 +28,10 @@ passport.use(new GoogleStrategy({
             if (existingUser) {
                 done(null, existingUser);
             } else { //create new user if existingUser === false
-                new User({ googleId: profile.id, displayName: profile.displayName }).save()
+                new User({
+                    googleId: profile.id,
+                    displayName: profile.displayName ,
+                }).save()
                     .then((user) => done(null, user));
             }
         })

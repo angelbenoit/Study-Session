@@ -39,17 +39,18 @@ class Timer extends Component {
             if(seconds === 0 && minute === 0){
               clearInterval(timer);
               this.nextSubject();
-              this.setState({ timerActive: false })
+              this.setState({ timerActive: false });
+
             }
 
             console.log(minute, seconds, secondCounter);
-
             secondCounter++;
             --seconds;
 
             if (seconds < 0) {
                 minute--;
                 seconds = 59;
+
             }
         }, 1000);
     }
@@ -75,6 +76,7 @@ class Timer extends Component {
     }
 
     nextSubject(){
+        console.log(this.props.today.current);
         this.updateCurrent(this.props.today.current);
         this.props.getTodaysSession();
     }
