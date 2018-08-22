@@ -16,8 +16,8 @@ passport.deserializeUser((id, done) => {
 
 
 passport.use(new GoogleStrategy({
-    clientID: key.googleClientID,
-    clientSecret: key.googleClientSecret,
+    clientID: keys.googleClientID,
+    clientSecret: keys.googleClientSecret,
     //switch back to '/auth/google/callback'
     //this is the temporary fix to uri mismatch
     callbackURL: 'https://studysession.herokuapp.com/auth/google/callback',
