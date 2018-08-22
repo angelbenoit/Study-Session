@@ -27,18 +27,23 @@ module.exports = app => {
         console.log(req.body)
         User.findById(req.user._id, function (err, user) {
             user.sessions.push(req.body);
+            user.totalSubjects = user.sessions.length;
             user.save();
         })
         res.end();
     });
 
     app.post('/api/removeItem', (req, res) => {
-        //console.log(req.body);
+        console.log(req.body);
         User.findById(req.user._id, function(err, user){
             user.sessions = user.sessions.filter(item => {
                 return item.itemID !== req.body.itemID
             });
-            //console.log(user.sessions);
+            user.totalSubjects = user.sessions.length;
+            if(req.body.complete)
+                user.totalSubjectsCompleted = user.totalSubjectsCompleted - 1;
+
+            console.log(user.totalSubjects, user.totalSubjectsCompleted);
             user.save();
         })
         res.end();

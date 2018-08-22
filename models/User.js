@@ -6,6 +6,7 @@ const userSchema = new Schema({
     displayName: String,
     sessions: Array,
     totalSubjectsCompleted: Number,
+    totalSubjects: Number,
     goalSessionNumber: Number,
     attempedGoalNumber: Number
 });

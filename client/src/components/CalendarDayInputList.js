@@ -4,6 +4,9 @@ import * as actions from '../Actions';
 import axios from 'axios';
 
 class CalendarDayInputList extends Component {
+    componentDidMount(){
+        this.props.fetchUser();
+    }
     //displayData will create list items that include the subject, minutes, and a remove button
     displayData(data) {
         const userInput = [];
@@ -11,7 +14,7 @@ class CalendarDayInputList extends Component {
             if (data[i] && data[i].date === this.props.datePicked) {
                 userInput.push(
                     <li className="userInputListItem">
-                        <p>Subject: {data[i].subject}</p> <p>Minutes: {data[i].minutes}</p> <a className="removeButton" onClick={() => this.removeItem(data[i].itemID)}>Remove</a>
+                        <p>Subject: {data[i].subject}</p> <p>Minutes: {data[i].minutes}</p> <a className="removeButton" onClick={() => this.removeItem(data[i].itemID, data[i].complete)}>Remove</a>
                     </li>
                 );
             }
@@ -21,10 +24,10 @@ class CalendarDayInputList extends Component {
     }
 
     //route for removing item is '/api/removeItem'
-    removeItem(id) {
+    removeItem(id, completed) {
         //we pass in the object {itemID: id} to be used in the router
         //and then update using fetchUser to get latest user data
-        axios.post('/api/removeItem', { itemID: id })
+        axios.post('/api/removeItem', { itemID: id, complete: completed })
             .then(this.props.fetchUser());
         this.props.fetchUser();
     }
