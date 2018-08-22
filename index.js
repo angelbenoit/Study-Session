@@ -2,12 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
-const keys = require('./config/key.js');
+const key = require('./config/key.js');
 const bodyParser = require('body-parser');
 
 require('./models/User.js');
 require('./services/passport.js');
-mongoose.connect(keys.mongoURI);
+mongoose.connect(key.mongoURI);
 
 const app = express();
 
