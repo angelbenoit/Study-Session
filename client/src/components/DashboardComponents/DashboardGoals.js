@@ -69,7 +69,7 @@ class DashboardGoals extends Component {
   }
 
   resetGoal(fetchUser){
-    axios.post('/api/setGoal', {goalSet: 0})
+    axios.post('/api/setGoal', { goalSet: 0 })
          .then(fetchUser());
     fetchUser();
   }

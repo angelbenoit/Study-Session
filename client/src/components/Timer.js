@@ -90,7 +90,7 @@ class Timer extends Component {
     render() {
         let perc = this.state.currentPercentageCompleted;
         return (
-                JSON.stringify(this.props.today.current) !== "{}" ?
+                this.props.today.current !== null && JSON.stringify(this.props.today.current) !== "{}" ?
                 (<div>
                     <div className="subject_list">
                         <div className="incomplete_subjects">
@@ -121,7 +121,14 @@ class Timer extends Component {
                             <Progress percent={perc} inverted color='violet' progress />
                         </Segment>
                     </div>
-                </div>) : <h1>You've finished your session</h1>
+                </div>) :
+                <div className="dashboard-overview">
+                    <h1 className="overview-header">You've have no more subjects to study</h1>
+                    <p className="overview-instructions">
+                        Click on the calendar to schedule something
+                        on today's date.
+                    </p>
+                </div>
         );
     }
 }

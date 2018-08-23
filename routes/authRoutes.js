@@ -24,7 +24,7 @@ module.exports = app => {
     });
 
     app.post('/api/addToDatabase', (req, res) => {
-        console.log(req.body)
+        //console.log(req.body)
         User.findById(req.user._id, function (err, user) {
             user.sessions.push(req.body);
             user.totalSubjects = user.sessions.length;
@@ -35,12 +35,12 @@ module.exports = app => {
 
     app.post('/api/removeItem', (req, res) => {
         console.log(req.body);
-        User.findById(req.user._id, function(err, user){
+        User.findById(req.user._id, function (err, user) {
             user.sessions = user.sessions.filter(item => {
                 return item.itemID !== req.body.itemID
             });
             user.totalSubjects = user.sessions.length;
-            if(req.body.complete)
+            if (req.body.complete)
                 user.totalSubjectsCompleted = user.totalSubjectsCompleted - 1;
 
             console.log(user.totalSubjects, user.totalSubjectsCompleted);
@@ -51,7 +51,7 @@ module.exports = app => {
 
     app.post('/api/setGoal', (req, res) => {
 
-        User.findById(req.user._id, function(err, user){
+        User.findById(req.user._id, function (err, user) {
             user.goalSessionNumber = req.body.goalSet;
             user.save();
         })
@@ -59,7 +59,7 @@ module.exports = app => {
     });
 
     app.post('/api/updateSubject', (req, res) => {
-        User.findById(req.user._id, function(err, user){
+        User.findById(req.user._id, function (err, user) {
             const filterArr = user.sessions.filter(item => item.itemID !== req.body.itemID);
             //console.log(filterArr);
             const updatedSubject = {
@@ -73,10 +73,17 @@ module.exports = app => {
             filterArr.push(updatedSubject);
             user.sessions = filterArr;
             //console.log(user.totalSubjectsCompleted);
-            if(user.totalSubjectsCompleted)
+            if (user.totalSubjectsCompleted)
                 user.totalSubjectsCompleted++;
             else
                 user.totalSubjectsCompleted = 1;
+
+            if (user.goalSessionNumber) {
+                if (user.attempedGoalNumber)
+                    user.attempedGoalNumber++;
+                else
+                    user.attempedGoalNumber = 1;
+            }
 
             user.save();
         })

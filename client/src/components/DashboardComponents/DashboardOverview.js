@@ -8,6 +8,13 @@ class DashboardOverview extends Component {
     this.props.fetchUser();
   }
 
+  displayContent(data){
+    if(data && data.sessions.length)
+      return this.getTotalPercentageCompleted(data);
+    else
+      return this.getDefaultOverview();
+  }
+
   getTotalPercentageCompleted(data){
     if(data){
       let completedSubjects;
@@ -39,7 +46,7 @@ class DashboardOverview extends Component {
       }
 
       return(
-        <div>
+        <div className="graph-page">
           <h4>You've Completed {percentageCompleted}% of subjects in your study sessions</h4>
           <h4>{overviewLook}</h4>
           <Doughnut
@@ -50,10 +57,33 @@ class DashboardOverview extends Component {
     }
   }
 
-  render() {
-    const overview = this.getTotalPercentageCompleted(this.props.auth)
-    return (
+  getDefaultOverview(){
+    return(
       <div>
+          <h3 className="overview-header">You don't have anything scheduled</h3>
+          <div className="overview-instructions">
+            <p>
+                To schedule any subject, pick a date in the calendar
+                and type in a subject and the time you'll study for.
+            </p>
+            <p>
+                Afterwards, a graph will appear on this page showing
+                the percentage of subjects you've completed studying.
+            </p>
+            <p>
+                To finish studying a subject, you will have to click on
+                "Start Session" and go through the entire time to finish
+                it. After that, it will be marked complete.
+            </p>
+          </div>
+      </div>
+    )
+  }
+
+  render() {
+    const overview = this.displayContent(this.props.auth);
+    return (
+      <div className="dashboard-overview">
         {overview}
       </div>
     );

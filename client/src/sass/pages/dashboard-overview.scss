@@ -1,0 +1,18 @@
+.dashboard-overview{
+    padding: 3rem;
+    text-align: center;
+}
+
+.graph-page{
+    color: $primary-color-dark;
+}
+
+.overview{
+    &-header{
+        color: $primary-color-dark;
+    }
+
+    &-instructions{
+        color: $primary-color;
+    }
+}

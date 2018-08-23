@@ -229,7 +229,7 @@ html, body {
       border-bottom: 1px solid #c5c7ff; }
       @media only screen and (max-width: 500px) {
         .dashboard__sideNav-item {
-          padding: 1.5rem; } }
+          padding: .25rem; } }
       .dashboard__sideNav-item:hover {
         background-color: #c5c7ff;
         color: white;
@@ -239,6 +239,19 @@ html, body {
     @media only screen and (max-width: 500px) {
       .dashboard__data {
         width: 100%; } }
+
+.dashboard-overview {
+  padding: 3rem;
+  text-align: center; }
+
+.graph-page {
+  color: #8d91f8; }
+
+.overview-header {
+  color: #8d91f8; }
+
+.overview-instructions {
+  color: #ABAEF7; }
 
 .login {
   background-color: grey; }
