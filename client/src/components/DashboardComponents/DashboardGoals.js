@@ -5,11 +5,34 @@ import * as actions from '../../Actions';
 import { connect } from 'react-redux';
 
 class DashboardGoals extends Component {
+  componentWillMount(){
+    this.props.fetchUser();
+  }
+
   display(handleSubmit, reset, fetchUser) {
     if (this.hasGoal())
       return this.ifHasGoal(fetchUser);
     else
       return this.renderGoalForm(handleSubmit, reset);
+  }
+
+  currentGoal(){
+    if(this.props.auth.attempedGoalNumber === this.props.auth.goalSessionNumber)
+      return(
+        <div>
+          <h3>You've completed your goal of {this.props.auth.goalSessionNumber} subjects</h3>
+        </div>
+      )
+    else
+      return(
+        <div>
+          <h3>Current goal: Study {this.props.auth.goalSessionNumber} subjects</h3>
+          <p>
+            So far you've completed
+            {this.props.auth.attempedGoalNumber}/{this.props.auth.goalSessionNumber}
+          </p>
+        </div>
+      )
   }
 
   hasGoal() {
@@ -22,7 +45,7 @@ class DashboardGoals extends Component {
   ifHasGoal(fetchUser){
     return (
       <div>
-        <h3>You have a goal</h3>
+        {this.currentGoal()}
         <button
           type='submit'
           className="formSubmit"

@@ -53,6 +53,7 @@ module.exports = app => {
 
         User.findById(req.user._id, function (err, user) {
             user.goalSessionNumber = req.body.goalSet;
+            user.attempedGoalNumber = 0;
             user.save();
         })
         res.end();
