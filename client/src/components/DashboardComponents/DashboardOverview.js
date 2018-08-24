@@ -40,7 +40,7 @@ class DashboardOverview extends Component {
         labels: ["Completed", "Incompleted"],
         datasets: [{
           label: "completed/incompleted",
-          backgroundColor: ['#ABAEF7', 'violet'],
+          backgroundColor: ['#ABAEF7', 'purple'],
           data: [subjectsComplete.length, subjectsIncomplete.length],
         }]
       }

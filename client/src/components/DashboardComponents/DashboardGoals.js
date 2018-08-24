@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Field, reduxForm } from 'redux-form'
 import * as actions from '../../Actions';
 import { connect } from 'react-redux';
+import { Doughnut } from 'react-chartjs-2';
 
 class DashboardGoals extends Component {
   componentWillMount(){
@@ -31,6 +32,7 @@ class DashboardGoals extends Component {
             So far you've completed
             {this.props.auth.attempedGoalNumber}/{this.props.auth.goalSessionNumber}
           </p>
+          {this.renderGoalChart()}
         </div>
       )
   }
@@ -69,6 +71,22 @@ class DashboardGoals extends Component {
         </div>
       </div>
     );
+  }
+
+  renderGoalChart(){
+    const datas = {
+      labels: ["Incompleted", "Completed"],
+      datasets: [{
+        label: "completed/incompleted",
+        backgroundColor: ['#ABAEF7', 'purple'],
+        data: [this.props.auth.goalSessionNumber, this.props.auth.attempedGoalNumber],
+      }]
+    }
+    return(
+      <Doughnut
+          data={datas}
+      />
+    )
   }
 
   renderGoalForm(handleSubmit, reset) {

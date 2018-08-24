@@ -79,7 +79,7 @@ module.exports = app => {
             else
                 user.totalSubjectsCompleted = 1;
 
-            if (user.goalSessionNumber) {
+            if (user.goalSessionNumber && user.goalSessionNumber !== user.attempedGoalNumber) {
                 if (user.attempedGoalNumber)
                     user.attempedGoalNumber++;
                 else
