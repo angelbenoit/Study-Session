@@ -7,6 +7,15 @@ export const fetchUser = () => async (dispatch) => {
     dispatch({ type: FETCH_USER, payload: res.data });
 };
 
+/*
+    getTodaysSession will go through the session list from the user api
+    and will only filter it out to today's date.
+    Additionally, there will be two arrays (complete, and incomplete)
+    and they will depend on the "complete" property in each object.
+    Default value for current will be an empty object and if there's
+    still space in the incomplete array, the last value in that array
+    will be popped into the current object
+*/
 export const getTodaysSession = () => async (dispatch) => {
     const res = await axios.get("/api/current_user");
     const data = res.data.sessions;
@@ -38,6 +47,7 @@ export const getTodaysSession = () => async (dispatch) => {
             }
         }
 
+        //if theres anything in the incomplete array
         if(incomplete.length){
             current = incomplete.pop();
         }

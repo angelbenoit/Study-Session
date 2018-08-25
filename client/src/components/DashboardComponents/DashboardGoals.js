@@ -10,6 +10,7 @@ class DashboardGoals extends Component {
     this.props.fetchUser();
   }
 
+  //display will check to see if user has a goal and return the proper data
   display(handleSubmit, reset, fetchUser) {
     if (this.hasGoal())
       return this.ifHasGoal(fetchUser);
@@ -17,6 +18,7 @@ class DashboardGoals extends Component {
       return this.renderGoalForm(handleSubmit, reset);
   }
 
+  //
   currentGoal(){
     if(this.props.auth.attempedGoalNumber === this.props.auth.goalSessionNumber)
       return(

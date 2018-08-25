@@ -25,21 +25,35 @@ class Timer extends Component {
         this.props.getTodaysSession();
     }
 
+    //when user clicks on a different link in the dashboard, the timer will reset
+    //since the timer will keep going on if this unmount isn't added
+    componentWillUnmount(){
+        clearInterval(this.state.testTimer)
+    }
+
     countDown(minute){
         let seconds = 0;
+        //secondCounter is only used to get the percentage
         let secondCounter = 0;
         let percentage = 0;
         this.setState({ timerActive: true });
         const totalSeconds = minute*60;
         let timer = setInterval(() => {
+            //hold interval in the state, so if user goes to another page in
+            //the dashboard, it'll be cleared
+            this.setState({ timerInterval: timer })
+
             let display = `${minute}:${seconds}`;
+            //get percentage completed
             percentage = ((secondCounter/totalSeconds)*100).toFixed(0);
+            //update the percentage to be displayed within the state and add the time display
             this.setState({ currentPercentageCompleted: percentage, timeDisplay: display });
 
+            //when timer is done
             if(seconds === 0 && minute === 0){
               clearInterval(timer);
               this.nextSubject();
-              this.setState({ timerActive: false });
+              this.setState({ timerActive: false, currentPercentageCompleted: 0 });
 
             }
 
@@ -75,12 +89,15 @@ class Timer extends Component {
         return list;
     }
 
+    //when user finishes the current subject, it will check to see if they can move on
     nextSubject(){
         console.log(this.props.today.current);
         this.updateCurrent(this.props.today.current);
         this.props.getTodaysSession();
     }
 
+    //axios post will set the current subject's finished property to true
+    //and will then update the api
     updateCurrent(current){
         axios.post('/api/updateSubject', current)
              .then(this.props.fetchUser())
