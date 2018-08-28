@@ -269,43 +269,46 @@ html, body {
     background-position: left top;
     min-height: 85vh;
     text-align: center;
+    justify-content: center;
     text-shadow: 2px 2px 8px #333333; }
     .landing-page__header-text {
-      width: 50%;
+      width: 60%;
       position: absolute;
       left: 25%;
       top: 25%;
       font-size: 125%;
       display: flex;
-      flex-direction: column; }
+      flex-direction: column;
+      text-align: center;
+      justify-content: center; }
       @media only screen and (max-width: 750px) {
         .landing-page__header-text {
           font-size: 90%; } }
+      @media only screen and (max-width: 450px) {
+        .landing-page__header-text {
+          font-size: 80%;
+          top: 15%; } }
     .landing-page__header .redirectHomePage {
       border-radius: 1.5rem;
       box-shadow: 10px 10px 5px -7px #ABAEF7;
-      margin-bottom: 3rem;
-      margin-left: 35%;
-      width: 25%;
+      margin-bottom: 2rem;
+      justify-content: center;
+      align-self: center;
       color: #6c70fd;
       text-decoration: none;
       text-shadow: 0 0 1px;
       background-color: white;
-      padding: 1rem;
+      padding: 1.5rem;
       transition: all .5s ease-in; }
       .landing-page__header .redirectHomePage:hover {
         background-color: #ABAEF7;
         color: white; }
-      @media only screen and (max-width: 450px) {
+      @media only screen and (max-width: 650px) {
         .landing-page__header .redirectHomePage {
           font-size: 75%;
-          padding: 1.5rem;
-          margin-left: 30%; } }
-      @media only screen and (max-width: 350px) {
-        .landing-page__header .redirectHomePage {
-          margin-left: 20%; } }
+          padding: 1rem; } }
     .landing-page__header-scroll {
-      font-size: 300%;
+      font-size: 3rem;
       animation: scrollButton 2s infinite;
       transition: color .6s ease-in; }
       .landing-page__header-scroll:hover {
@@ -333,12 +336,9 @@ html, body {
         @media only screen and (max-width: 800px) {
           .landing-page__details .feature_list-item {
             font-size: 85%;
-            padding: 1.25rem; } }
-        @media only screen and (max-width: 700px) {
-          .landing-page__details .feature_list-item {
+            padding: 1.25rem;
             flex-direction: column;
-            align-items: center;
-            font-size: 90%; } }
+            align-items: center; } }
         .landing-page__details .feature_list-item-text {
           width: 40%;
           padding: 1.5rem;
@@ -352,7 +352,7 @@ html, body {
           border-radius: 10px;
           border: 1px solid #6c70fd;
           align-self: center; }
-          @media only screen and (max-width: 700px) {
+          @media only screen and (max-width: 800px) {
             .landing-page__details .feature_list-item img {
               width: 100%; } }
   .landing-page__footer {

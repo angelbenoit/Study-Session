@@ -52,15 +52,12 @@ class LandingPage extends Component {
                     <div className="landing-page__header-text">
                         <h1><i class="fa fa-book"></i> Study Session</h1>
                         <p>
-                            Lorem ipsum,
-                            dolor sit amet consectetur
-                            adipisicing elit. Rem iure
-                            quos consequuntur alias
-                            officia itaque, placeat,
-                            quis corrupti quibusdam,
-                            odit harum explicabo. Adipisci
-                            eos possimus nulla repellendus
-                            labore esse corporis!
+                            Study Session is a tracker for school subjects.
+                            Users will be able to schedule school subjects
+                            and the amount of minutes on and present or future
+                            date. For these subjects to be marked complete, users
+                            will need to start the countdown timer and study until
+                            the timer stops.
                         </p>
 
                         {this.getLoginOption()}
@@ -88,7 +85,7 @@ class LandingPage extends Component {
                                         any day of the year.
                                     </p>
                                 </div>
-                                <img src={require("../images/calendar.png")} alt="test"/>
+                                <img src={require("../images/calendar.png")} alt="Calendar"/>
                             </div>
 
                             <div style={{"border-bottom": "2px solid #ABAEF7"}}></div>
@@ -107,7 +104,7 @@ class LandingPage extends Component {
                                         move on to start the next subject or just take a break.
                                     </p>
                                 </div>
-                                <img src={require("../images/landing.jpg")} alt="test"/>
+                                <img src={require("../images/timer.png")} alt="Timer"/>
                             </div>
 
                             <div style={{"border-bottom": "2px solid #ABAEF7"}}></div>
@@ -120,7 +117,7 @@ class LandingPage extends Component {
                                         View past sessions and set goals.
                                     </p>
                                 </div>
-                                <img src={require("../images/dashboard.png")} alt="test"/>
+                                <img src={require("../images/dashboard.png")} alt="Dashboard"/>
                             </div>
 
                         </div>
