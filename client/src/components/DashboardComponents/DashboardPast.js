@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
+import * as actions from '../../Actions';
 
 class DashboardPast extends Component {
+  clearPastSessions(data){
+    axios.post('/api/clearPast', data)
+         .then(this.props.fetchUser());
+  }
 
   getPastMonthSessions(data) {
     const pastSessions = [];
@@ -38,10 +44,12 @@ class DashboardPast extends Component {
   }
 
   render() {
-    const past = this.displayPastSessions(this.getPastMonthSessions(this.props.auth.sessions))
+    const pastSessionArray = this.getPastMonthSessions(this.props.auth.sessions);
+    const past = this.displayPastSessions(pastSessionArray);
     return (
       <div className="dashboard_list">
           <h2>Past Sessions</h2>
+          <button className="formSubmit" onClick={() => this.clearPastSessions(pastSessionArray)}>Clear Past Sessions</button>
           <ul>
             {past}
           </ul>
@@ -54,4 +62,4 @@ function mapStateToProps(state) {
   return { auth: state.auth }
 }
 
-export default connect(mapStateToProps)(DashboardPast);
+export default connect(mapStateToProps, actions)(DashboardPast);
