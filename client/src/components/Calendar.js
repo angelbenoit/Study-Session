@@ -17,6 +17,10 @@ class LandingPage extends Component {
         this.redirectToSpecifiedDate = this.redirectToSpecifiedDate.bind(this);
     }
 
+    componentDidMount(){
+        document.title = "Calendar";
+    }
+
     addMonth(){
         if(this.state.month === 11)
             this.setState((prevState) => {

@@ -23,6 +23,10 @@ class Dashboard extends Component {
         this.getSelected = this.getSelected.bind(this);
     }
 
+    componentDidMount(){
+        document.title = "Dashboard";
+    }
+
     getSelected(selection) {
         if (this.state[selection])
             return { 'backgroundColor': 'rgb(197, 199, 255)' }
