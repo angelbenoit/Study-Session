@@ -106,6 +106,7 @@ class Timer extends Component {
 
     render() {
         let perc = this.state.currentPercentageCompleted;
+
         return (
                 this.props.today.current !== null && JSON.stringify(this.props.today.current) !== "{}" ?
                 (<div>
