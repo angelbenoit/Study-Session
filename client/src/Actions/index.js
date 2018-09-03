@@ -29,7 +29,7 @@ export const getTodaysSession = () => async (dispatch) => {
         the api(which are strings). The api has sessions array which is made up of objects.
         each one contains the information about the session, which includes date
     */
-    const totalDate = `${month}/${day}/${year}`;
+    const totalDate = `${month}/${day < 10 ? `0${day}` : day}/${year}`;
 
     //fill out complete and incomplete array to include in the state
     const complete = [];

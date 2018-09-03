@@ -20,8 +20,8 @@ passport.use(new GoogleStrategy({
     clientSecret: key.googleClientSecret,
     //switch back to '/auth/google/callback'
     //this is the temporary fix to uri mismatch
-    callbackURL: 'https://studysession.herokuapp.com/auth/google/callback',
-    //callbackURL: '/auth/google/callback',
+    //callbackURL: 'https://studysession.herokuapp.com/auth/google/callback',
+    callbackURL: '/auth/google/callback',
     proxy: true
 }, (accessToken, refreshToken, profile, done) => {
     console.log(profile);
